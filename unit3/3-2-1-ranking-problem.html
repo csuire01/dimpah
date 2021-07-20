@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to Ranking Problem &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
+    <title>1. Introduction to Ranking Problem &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -49,9 +49,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Searching with Solr" href="3-2-2-searching-with-solr.html" />
+    <link rel="next" title="2. Searching with Solr" href="3-2-2-searching-with-solr.html" />
     <link rel="prev" title="Text Search Algorithms" href="3-2-text-search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -163,12 +165,12 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Introduction to Ranking Problem
+     1. Introduction to Ranking Problem
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="3-2-2-searching-with-solr.html">
-     Searching with Solr
+     2. Searching with Solr
     </a>
    </li>
    <li class="toctree-l2">
@@ -304,6 +306,46 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-information-need-query-documents-and-collections">
+   a) Information need, Query, Documents and Collections
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#b-evaluation-measures-precision-recall-f1">
+   b) Evaluation measures (precision/recall/f1)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision">
+     Precision
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recall">
+     Recall
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f-score">
+     F-score
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-information-retrieval-models">
+   c) Information Retrieval Models
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -313,7 +355,101 @@
               <div>
                 
   <div class="section" id="introduction-to-ranking-problem">
-<h1>Introduction to Ranking Problem<a class="headerlink" href="#introduction-to-ranking-problem" title="Permalink to this headline">¶</a></h1>
+<h1>1. Introduction to Ranking Problem<a class="headerlink" href="#introduction-to-ranking-problem" title="Permalink to this headline">¶</a></h1>
+<p>Ranking documents against a query is one of the main problem tackled by Information Retrieval (IR).</p>
+<div class="section" id="a-information-need-query-documents-and-collections">
+<h2>a) Information need, Query, Documents and Collections<a class="headerlink" href="#a-information-need-query-documents-and-collections" title="Permalink to this headline">¶</a></h2>
+<p>Let’s define the entities that are concerned with the ranking problem. A user (U) has an information need (I). He/She wants to identify a set of relevant documents (D) among a collection (C). Every documents is composed of a list of terms (T). The first step for the user is to translate his/her information need into a language that the system can understand, that is create a query. Such a query is often constituted of a list of keywords that the search system will try to match to the content of documents in the collection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./dataset/CISI.ALL&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="n">lines</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<span class="n">doc_set</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">doc_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">doc_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.I&quot;</span><span class="p">):</span>
+        <span class="n">doc_id</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.X&quot;</span><span class="p">):</span>
+        <span class="n">doc_set</span><span class="p">[</span><span class="n">doc_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc_text</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="n">doc_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">doc_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">doc_text</span> <span class="o">+=</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">3</span><span class="p">:]</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="c1"># The first 3 characters of a line can be ignored.</span>
+
+<span class="c1"># Print something to see the dictionary structure</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of documents = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">doc_set</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">doc_set</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">])</span> <span class="c1"># note that the dictionary indexes are strings, not numbers. </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1805</span><span class="o">/</span><span class="mf">4160538002.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./dataset/CISI.ALL&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">lines</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">lines</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">lines</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;./dataset/CISI.ALL&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="b-evaluation-measures-precision-recall-f1">
+<h2>b) Evaluation measures (precision/recall/f1)<a class="headerlink" href="#b-evaluation-measures-precision-recall-f1" title="Permalink to this headline">¶</a></h2>
+<p>To evaluate the capacity of an Information Retrieval System, we need to be able to compute how well it can match documents against queries. The goal is not to make an absolute evaluation of the system performance but rather to be able to compare different systems. After a query, a set of matching documents is returned (<em>matching</em> according to the system of course). We want to evaluate how many of these documents really are relevant, and how many relevant documents were missed by the system. We often use the following terms when evaluating this.</p>
+<ul class="simple">
+<li><p><u>True Positive (TP):</u> number of relevant documents returned by the system</p></li>
+<li><p><u>False Positive (FP):</u> number of non-relevant documents returned by the system</p></li>
+<li><p><u>True Negative (TN):</u> number of non-relevant documents <strong>not</strong> returned by the system</p></li>
+<li><p><u>False Negative (FN):</u> number of relevant document <strong>not</strong> returned by the system.</p></li>
+</ul>
+<div class="section" id="precision">
+<h3>Precision<a class="headerlink" href="#precision" title="Permalink to this headline">¶</a></h3>
+<p>The precision is the capacity of a system to select <u><strong>only</strong></u> relevant documents towards a query.
+If the system returns too many documents, of course a lot of them will match the user query. However, a lot of documents won’t be interesting for the user and the precision will be low. On the contrary, if most of the returned documents are relevant, the precision will be high.
+$<span class="math notranslate nohighlight">\(Precision=\frac{TP}{TP+FP}\)</span>$</p>
+</div>
+<div class="section" id="recall">
+<h3>Recall<a class="headerlink" href="#recall" title="Permalink to this headline">¶</a></h3>
+<p>The recall is the capacity of a system to select <u><strong>all</strong></u> relevant documents towards a query. If a lot of relevant documents are  not returned by the system, the recall will be low. On the contrary, if most relevant documents are returned by the system, the recall will be high.
+$<span class="math notranslate nohighlight">\(Recall=\frac{TP}{TP+FN}\)</span>$</p>
+</div>
+<div class="section" id="f-score">
+<h3>F-score<a class="headerlink" href="#f-score" title="Permalink to this headline">¶</a></h3>
+<p>Precision and recall measure different aspect of the search system. Both of them are important though. For example, it is very easy to get a high recall. If the system returns all documents in the collection, whether or not they are relevant, the recall will be high but not the precision. The F-score is important to get an overall overview of the capacity of the system. The most common F-score is the <span class="math notranslate nohighlight">\(F_1\)</span>. It corresponds to the harmonic mean of the precision and recall. It is computed as follows.
+$<span class="math notranslate nohighlight">\( F_1 = 2 \cdot \frac{recall \cdot prescision}{recall + precision} \)</span><span class="math notranslate nohighlight">\(
+In this case, both precision and recall are as important as each other. It is to be noted that a generalization of the \)</span>F_1<span class="math notranslate nohighlight">\( exists, the \)</span>F_\beta$ socre where you can give more or less importance to the recall or the precision. It can be useful in some use cases where one is more important than the other.</p>
+<p>Here is a figure extracted from Wikipedia that summarize how recall and precision are computed.
+<img alt="precision and recall" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/264px-Precisionrecall.svg.png" /></p>
+</div>
+</div>
+<div class="section" id="c-information-retrieval-models">
+<h2>c) Information Retrieval Models<a class="headerlink" href="#c-information-retrieval-models" title="Permalink to this headline">¶</a></h2>
+<p>An IR model can mathematically represents the entities at play in an information retrieval task. That is the user need (a query), and how relevant documents are selected and ordered. The first model to have been studied is the <strong>Boolean Model</strong>. In this model, a document <em>d</em> is represented as a set of terms <span class="math notranslate nohighlight">\(t_i\)</span>. Imagine for example a collection <span class="math notranslate nohighlight">\(C\)</span> composed of a set of documents as follow:</p>
+<p><span class="math notranslate nohighlight">\(d_1 = (t_1, t_4, t_5)\)</span>        <span class="math notranslate nohighlight">\(d_2 = (t_2, t_3)\)</span>        <span class="math notranslate nohighlight">\(d_3 = (t_1, t_3, t_4, t_6)\)</span></p>
+<p>A boolean query can then be expressed using the terms <span class="math notranslate nohighlight">\(t_i\)</span> and a list of boolean opeartors: AND (<span class="math notranslate nohighlight">\(\land\)</span>), OR (<span class="math notranslate nohighlight">\(\lor\)</span>) and NOT (<span class="math notranslate nohighlight">\(\neg\)</span>). For example, the following query will match documents <span class="math notranslate nohighlight">\(d_2\)</span> and <span class="math notranslate nohighlight">\(d_3\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(q = (t_1 \lor t_2) \land t_3\)</span></p>
+<p>This model is quite simple but has many drawbacks. First, it is not always easy for users to express boolean queries, which can sometimes be quite complex. Moreover, there is no relevancy order in the resulting documents: either the document match the query or it does not. The Boolean Model can still be useful in some cases but it is still too coarse, especially when dealing with unstructured textual documents.</p>
+<p>The next model we will study is the <strong>Vector Space Model</strong>. Its basic idea is to represent documents as a vector of terms in the vecor space generated by the list of terms <span class="math notranslate nohighlight">\(t_i\)</span> in the whole collection (where one term corresponds to one dimension in this space). For example, in the collection <span class="math notranslate nohighlight">\(C\)</span> defined previously, there is a total of <span class="math notranslate nohighlight">\(6\)</span> terms, thus generating a vector space of <span class="math notranslate nohighlight">\(6\)</span> dimensions. The terms in every documents and every queries are associated with a weight <span class="math notranslate nohighlight">\(w\)</span> representing their importance. This weight is computed using statistics methods, the most common one being TF-IDF. The Vector Space Model is considered as a Bag-of-Words model, because the order of terms in the documents does not matter. Using this representation, the document “the cat eats the mouse” has the exact same representation as the document “the mouse eats the cat”. This can appear as a huge drawback but in many cases, it is often enough to extract relevant documents from a collection. This flaw can be alleviated using different analysis methods like n-grams for example. To sum-up, the previously defined collection <span class="math notranslate nohighlight">\(C\)</span> can be represented as the follwing matrix.
+$<span class="math notranslate nohighlight">\( \left( \begin{matrix} w_{1,1} &amp; w_{2,1} &amp; w_{3,1} &amp; w_{4,1} &amp; w_{5,1} &amp; w_{6,1} \\ w_{1,2} &amp; w_{2,2} &amp; w_{3,2} &amp; w_{4,2} &amp; w_{5,2} &amp; w_{6,2} \\ w_{1,3} &amp; w_{2,3} &amp; w_{3,3} &amp; w_{4,3} &amp; w_{5,3} &amp; w_{6,3} \end{matrix} \right) \)</span>$</p>
+<p>Each row in this matrix corresponds to a document in the collection. The weights <span class="math notranslate nohighlight">\(w_{i,j}\)</span> can be computed using TF-IDF.</p>
+<p>The idea behing TF-IDF is to associate a weight with each term according to its importance in the document. Two apsects are considered to evaluate the importance of a term:</p>
+<ul class="simple">
+<li><p><strong>Term frequency (TF)</strong>: the more a term appear in a document, the more important it is. There are several ways of computing this (<a class="reference external" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Term_frequency_2">TF computations</a>). The most intuitive one is just to count the number of times a term <span class="math notranslate nohighlight">\(t_i\)</span> appear in a document. Other computation methods exist, for example to normalize this frequency against the length of the document. However, we can’t just take into account term frequency as a measure of importance of a word because a lot of terms are very common but do not convey much information (articles and pronouns are often quite frequent in every document for example). One way of alleviating this is to consider how rare a term is in the entire collection, this is the inverse document frequency.</p></li>
+<li><p><strong>Inverse document frequency (IDF)</strong>: in most languages, most of the information is conveyed by words that are quite rare. The IDF measures how rare are these words in a collection, which is equivalent to how much information is conveyed by a term. For example, if the article ‘the’ is very frequent in a particular document (high TF), it is also very frequent in the entire collection (low IDF). Its TF-IDF weight will thus be quite low, which is a good thing because it is indeed not very important. On the contrary, if a term appear in a document, but does not appear in any other document of the collection, the IDF will be high. See <a class="reference external" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Inverse_document_frequency_2">this page</a> for various ways of computing the IDF.</p></li>
+</ul>
+<p>The final weight is computed by multiplying the TF and the IDF.</p>
+<p>A query defined by the user will also be represented as a vector in the same vector space. The relevance of every documents towards the query can then be computed using a vector similarity function (the most common one being the cosinus distance, but other exist).</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -342,7 +478,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="3-2-text-search.html" title="previous page">Text Search Algorithms</a>
-    <a class='right-next' id="next-link" href="3-2-2-searching-with-solr.html" title="next page">Searching with Solr</a>
+    <a class='right-next' id="next-link" href="3-2-2-searching-with-solr.html" title="next page">2. Searching with Solr</a>
 
         </div>
         

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Searching with Solr &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
+    <title>2. Searching with Solr &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Result representations" href="3-2-3-result-representations.html" />
-    <link rel="prev" title="Introduction to Ranking Problem" href="3-2-1-ranking-problem.html" />
+    <link rel="prev" title="1. Introduction to Ranking Problem" href="3-2-1-ranking-problem.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -163,12 +163,12 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="3-2-1-ranking-problem.html">
-     Introduction to Ranking Problem
+     1. Introduction to Ranking Problem
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Searching with Solr
+     2. Searching with Solr
     </a>
    </li>
    <li class="toctree-l2">
@@ -304,6 +304,34 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-technicalities-and-syntax">
+   a. Technicalities and Syntax
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#b-advanced-parameters">
+   b. Advanced parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-facetting">
+   c. Facetting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-other-useful-features">
+   d. Other useful features
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -313,7 +341,253 @@
               <div>
                 
   <div class="section" id="searching-with-solr">
-<h1>Searching with Solr<a class="headerlink" href="#searching-with-solr" title="Permalink to this headline">¶</a></h1>
+<h1>2. Searching with Solr<a class="headerlink" href="#searching-with-solr" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-technicalities-and-syntax">
+<h2>a. Technicalities and Syntax<a class="headerlink" href="#a-technicalities-and-syntax" title="Permalink to this headline">¶</a></h2>
+<p><strong><u>Querying a Solr server</u></strong></p>
+<p>A Solr index is available at the following address <a class="reference external" href="http://solrserver">http://solrserver</a>. Querying a Solr server can be done in multiple ways but the simplest one is to use a HTTP GET request with query string. This is a lot of technical terms just to say that we will create a URL pointing towards the Solr server and add some parameters to it. Parameters can be added to any URL this way: <span class="xref myst">https://www.example.com/page?param1=val1&amp;param2=val2</span>.
+If one of the parameter should contain an array of values, you can just repeat the parameter for each value of the array: <span class="xref myst">https://www.example.com/page?param1=val1&amp;param1=val2</span>. Be careful that passing arrays as query parameters is not standardised, and other services may not work the same way (but Solr does !).
+Solr will then process the query and will return a list of resulting documents, along with other information.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interact_manual</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_javascript</span><span class="p">,</span> <span class="n">display_html</span><span class="p">,</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span><span class="p">,</span> <span class="n">JSON</span>
+<span class="kn">import</span> <span class="nn">IPython</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RenderJSON</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">json_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        
+    <span class="k">def</span> <span class="nf">_ipython_display_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">display_html</span><span class="p">(</span><span class="s1">&#39;&lt;div id=&quot;</span><span class="si">{}</span><span class="s1">&quot; style=&quot;height: 600px; width:100%;&quot;&gt;&lt;/div&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">),</span>
+            <span class="n">raw</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">display_javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        require([&quot;https://rawgit.com/caldwell/renderjson/master/renderjson.js&quot;], function() {</span>
+<span class="s2">          document.getElementById(&#39;</span><span class="si">%s</span><span class="s2">&#39;).appendChild(renderjson(</span><span class="si">%s</span><span class="s2">))</span>
+<span class="s2">        });</span>
+<span class="s2">        &quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_str</span><span class="p">),</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">query_solr</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">param_widgets</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">param_widgets</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_widgets</span><span class="p">[</span><span class="n">key</span><span class="p">],</span><span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">param_widgets</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                <span class="n">url</span> <span class="o">+=</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="n">param</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;+&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&amp;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">+=</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="n">param_widgets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;+&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&amp;&#39;</span>
+    <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;echoParams=all&quot;</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Querying &quot;</span><span class="p">,</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">connection</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+<span class="k">def</span> <span class="nf">generate_widgets</span><span class="p">(</span><span class="n">params_list</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">params_widgets</span>
+    <span class="n">params_widgets</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params_list</span><span class="p">:</span>
+        <span class="n">params_widgets</span><span class="p">[</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+            <span class="n">value</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;query&#39;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;q:&#39;</span><span class="p">,</span>
+            <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)]</span>
+    <span class="n">params_widgets</span><span class="p">[</span><span class="s2">&quot;defType&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;lucene&#39;</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;deftype&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;defType:&#39;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)]</span>
+    <span class="n">params_widgets</span><span class="p">[</span><span class="s2">&quot;sort&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;score desc&#39;</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;sort&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;sort:&#39;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)]</span>
+    <span class="n">params_widgets</span><span class="p">[</span><span class="s2">&quot;rows&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;rows&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;rows:&#39;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)]</span>
+    <span class="n">params_widgets</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;start&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;start:&#39;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)]</span>
+    <span class="n">params_widgets</span><span class="p">[</span><span class="s2">&quot;fl&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;*,score&#39;</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;fl&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;fl:&#39;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)]</span>
+    <span class="n">params_widgets</span><span class="p">[</span><span class="s2">&quot;fq&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">params_widgets</span><span class="p">[</span><span class="s2">&quot;fq&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;filter query&#39;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;fq:&#39;</span><span class="p">,</span>
+            <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">params_widgets</span><span class="o">.</span><span class="n">values</span><span class="p">())):</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">on_button_click</span><span class="p">(</span><span class="n">button</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">response</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">query_solr</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params_widgets</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done.&quot;</span><span class="p">)</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Send&#39;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">button_style</span><span class="o">=</span><span class="s1">&#39;success&#39;</span><span class="p">,</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Click me&#39;</span><span class="p">,</span>
+        <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;check&#39;</span>
+    <span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_click</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">global</span> <span class="n">params_widgets</span>
+<span class="k">global</span> <span class="n">url</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080/solr/newseye_collection/select?&#39;</span>
+<span class="n">solr_paramaters</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;q&quot;</span><span class="p">,</span><span class="s2">&quot;*:*&quot;</span><span class="p">)]</span>
+<span class="n">generate_widgets</span><span class="p">(</span><span class="n">solr_paramaters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "47b5bed50d264726a0a15a903c0ffbdf"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "b51c6166137c46fa93b2e4ae85c3d893"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "92c76e555f4a4bda952b4a1e1b637b81"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "61f3ea84186144d8bab5905c146dfee9"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "3e28c43d783a4f2283bf2a8c6e25caed"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "ba4d964e7d5d499f837f175eb76fb674"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "2202620ba0364a25bac9dac5abe69cf0"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "9e3e0ce5886948959ad36d0f0640c01b"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "d213ec69dec749fa843411b002480509"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "222b2e3d8c404474bfa61c770555246a"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "b010de5de1514d58bc3e4089c4f0c277"}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1824</span><span class="o">/</span><span class="mf">1137126567.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;response&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><u>Common parameters</u></strong></p>
+<p>Solr can support different set of parameters, each set corresponds to a different way of expressing queries. The following parameters are common to all available query parsers.</p>
+<ul class="simple">
+<li><p><strong>defType:</strong> <em>(default: lucene)</em> allows you to select which query parser Solr should use when processing your query. You can choose betwen <em>lucene</em>, <em>dismax</em> or <em>edismax</em>.</p></li>
+<li><p><strong>sort:</strong> <em>(default: score desc)</em> allows you to select how Solr will sort the results of your query. The syntax is as follows: <code class="docutils literal notranslate"><span class="pre">&lt;field&gt;</span> <span class="pre">&lt;order&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;field&gt;</span></code> is the field over which you want to sort the results and <code class="docutils literal notranslate"><span class="pre">&lt;order&gt;</span></code> is <em>asc</em> for ascending or <em>desc</em> for descending. The default value will present documents in the descending order of their relevancy score.</p></li>
+<li><p><strong>rows:</strong> <em>(default: 10)</em> how many results will be returned by Solr. A search can return many results and it is not always desirable to display all of them at once. This parameter will limit the amount of documents returned by the search.</p></li>
+<li><p><strong>start:</strong> <em>(default: 0)</em> is used to specify an offset in the results list. Solr will display documents from this offset onwards. This parameter can be used in conjunction with the <strong>rows</strong> parameter to setup the paging of results. If the <strong>rows</strong> parameter is set to 10 (the default value), the first page of results can be displayed by setting <strong>start</strong> to 0. You can then get the second page by issuing the same request but setting the <strong>start</strong> parameter to 10, the second page by setting it to 20, <em>etc</em>.</p></li>
+<li><p><strong>fl:</strong> <em>(default: *)</em> this parameter instructs Solr on which field shouyld be returned for every document. The default value returns every fields. You can set it to a space-separated list of fields.</p></li>
+<li><p><strong>fq:</strong> can be used to filter the documents returned after a query. The value of this parameter is in the form <code class="docutils literal notranslate"><span class="pre">&lt;field&gt;:&lt;value</span> <span class="pre">or</span> <span class="pre">range&gt;</span></code>. For example, setting this to <code class="docutils literal notranslate"><span class="pre">year:1950</span></code> will only return documents from this specific year ; setting it with a range can be done like this <code class="docutils literal notranslate"><span class="pre">year:[1900</span> <span class="pre">TO</span> <span class="pre">1910]</span></code>.</p></li>
+</ul>
+<p>For a complete list of the common parameters, see <a class="reference external" href="https://solr.apache.org/guide/8_0/common-query-parameters.html#common-query-parameters">this page</a>.</p>
+<p><strong><u>Querying text fields</u></strong></p>
+<p>The main parameter to use to search inside text field is the <strong>q</strong> parameter. It can contains terms and operators. Terms can either be single words like <code class="docutils literal notranslate"><span class="pre">fox</span></code> or <code class="docutils literal notranslate"><span class="pre">president</span></code>, or they can be phrases which are a group of words surrounded by double quotes like <code class="docutils literal notranslate"><span class="pre">&quot;green</span> <span class="pre">plant&quot;</span></code>. Several terms modifiers can be used to modify a search.</p>
+<ul class="simple">
+<li><p><strong>Wildcard:</strong> these can only be applied to single terms and not phrases. They add flexibility to the search by matching one character (using <code class="docutils literal notranslate"><span class="pre">?</span></code>) or several characters (using <code class="docutils literal notranslate"><span class="pre">*</span></code>). For example, the query <code class="docutils literal notranslate"><span class="pre">te?t</span></code> will match both <code class="docutils literal notranslate"><span class="pre">test</span></code> and <code class="docutils literal notranslate"><span class="pre">text</span></code>. The query <code class="docutils literal notranslate"><span class="pre">presi*</span></code> will match <code class="docutils literal notranslate"><span class="pre">president</span></code>, <code class="docutils literal notranslate"><span class="pre">presidential</span></code>, <code class="docutils literal notranslate"><span class="pre">presiding</span></code>, <em>etc</em>.</p></li>
+<li><p><strong>Fuzzy search:</strong> this is based on the edit distance algorithm. The system will match words that are similar to the query term, even if it is not an exact match. For example, the query <code class="docutils literal notranslate"><span class="pre">roam~</span></code> will match words like <code class="docutils literal notranslate"><span class="pre">foam</span></code> or <code class="docutils literal notranslate"><span class="pre">road</span></code>. By default, all words with an edit disyance of 2 will match the query word.</p></li>
+<li><p><strong>Proximity search:</strong> this type of search will look for words that are separated by a certain amount of different words. For example, the query <code class="docutils literal notranslate"><span class="pre">&quot;battle</span> <span class="pre">france&quot;~10</span></code> will match documents containing those two words separated by 10 other words at most.</p></li>
+<li><p><strong>Boosting terms:</strong> it is possible to control the relevancy of resulting documents by assigning a boost factor to the terms of your query. For example, the query <code class="docutils literal notranslate"><span class="pre">green^3</span> <span class="pre">apple</span></code> will match documents containg those two terms, but document containing the term <code class="docutils literal notranslate"><span class="pre">green</span></code> will have a higher relevancy. The boost factor can also be set between 0 and 1 to lesser the relevancy of a particular term.</p></li>
+</ul>
+<p>Boolean operators (AND, OR, NOT) can be used to formulate more complex queries. See this in more details <a class="reference external" href="https://solr.apache.org/guide/8_0/the-standard-query-parser.html#boolean-operators-supported-by-the-standard-query-parser">here</a>.</p>
+</div>
+<div class="section" id="b-advanced-parameters">
+<h2>b. Advanced parameters<a class="headerlink" href="#b-advanced-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Solr provides different way to parse queries by setting the defType parameter (see <em>Common parameters</em> section above). The default one, <code class="docutils literal notranslate"><span class="pre">lucene</span></code>, allows to use all term modifiers described previously. However, others query parsers can be used, for example <code class="docutils literal notranslate"><span class="pre">dismax</span></code>. This parser prevents using the wildcard term modifier but allows for more control by defining more parameters.</p>
+<ul class="simple">
+<li><p><strong>qf:</strong> stands for “query fields”. It allow you to specify which fields will be searched and how important they are. This can be useful for if you have several textual field but one of them should be given more importance? Imagine our documents contain a title, a content and a comment. In this case, the qf parameter could be set like this: <code class="docutils literal notranslate"><span class="pre">title^2</span> <span class="pre">content</span> <span class="pre">comment^0.5</span></code>, giving matches in the title field twice the importance than matches in the content of a document, while matches in a comment are twice less important that matches in the content. It is to be noted that modifying this parameter will not modify which documents are returned but will indeed modify their relevancy score and the order they are returned.</p></li>
+<li><p><strong>mm:</strong> stands for “minimum should match”. By default, terms in a query are all optionals (even though at least one term should be present for a document to match). You can modify this value using integers or percentage. For example, setting it to <code class="docutils literal notranslate"><span class="pre">3</span></code> means that at least 3 terms in the query should be present in a document for it to match. Another example: <code class="docutils literal notranslate"><span class="pre">50%</span></code> means that at least half of the terms in the query should be present in a document fot it to match. You can also set this value as a negative integer or percentage. For example, setting this parameter to <code class="docutils literal notranslate"><span class="pre">-25%</span></code> means that up to a quarter of the terms in the query may be missing in resulting documents.</p></li>
+<li><p><strong>pf and ps:</strong> corresponds to <em>phrase field</em> and <em>phrase slop</em>. It is very similar to the proximity search, but allows for more flexibility. In a sense, it allows to treat the entire content of the <code class="docutils literal notranslate"><span class="pre">q</span></code> parameter as a phrase without using quotes. The fields concerned by this need to be set in the <em>pf</em> paramters, while the <em>ps</em> parameter is set to an integer indicating how much a token needs to be moved to match a phrase.</p></li>
+<li><p><strong>tie:</strong></p></li>
+</ul>
+</div>
+<div class="section" id="c-facetting">
+<h2>c. Facetting<a class="headerlink" href="#c-facetting" title="Permalink to this headline">¶</a></h2>
+<p>The goal of facetting is to provide users with a way to navigate through the search results. After a query, a list of matching documents is returned. If facetting is activated on some fields, the search will also return the number of matching documents for each value of this field. This information ca, be used to build a user interface allowing users to filter the list of results and get an idea of the number of documents concerned by this filter. You can activate facets in a Solr query by setting the <code class="docutils literal notranslate"><span class="pre">facet</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p><strong><u>Field facetting</u></strong></p>
+<p>One option is then to choose which field should be facetted using the <code class="docutils literal notranslate"><span class="pre">facet.field</span></code> parameter. It is to be noted that you can request for several facet fields by setting the <code class="docutils literal notranslate"><span class="pre">facet.field</span></code> parameter multiple times. Several parameters can be used to configure the returned facets. If you have only one <code class="docutils literal notranslate"><span class="pre">facet.field</span></code> parameter, you can use the following parameters directly. If you have several <code class="docutils literal notranslate"><span class="pre">facet.field</span></code>, they can be configure individually with this syntax: <code class="docutils literal notranslate"><span class="pre">f.&lt;fieldname&gt;.facet.&lt;parameter&gt;</span></code>.</p>
+<ul class="simple">
+<li><p><strong>facet.sort:</strong> this parameter determines the ordering of the terms returned. Possible value are <code class="docutils literal notranslate"><span class="pre">count</span></code> where the terms with the higher counts are first, and <code class="docutils literal notranslate"><span class="pre">index</span></code> where terms are ordered alphabetically whatever their count is.</p></li>
+<li><p><strong>facet.limit:</strong> this parameter determines the maximum number of terms to be returned.</p></li>
+<li><p><strong>facet.offset:</strong> this parameter determines an offset in the returned terms which can be used for paging.
+A lot more option are available, see <a class="reference external" href="https://solr.apache.org/guide/8_0/faceting.html#field-value-faceting-parameters">here</a>.</p></li>
+</ul>
+<p><strong><u>Range facetting</u></strong></p>
+<p>This type of facetting can be used on dates or numerical fields to create buckets of values for which you will get the number of matching documents. The syntax is similar to field facetting, and you can activate range facetting on specific fields by setting the <code class="docutils literal notranslate"><span class="pre">facet.range</span></code> parameter. If you set this parameter multiple times, you can configure each field individually by using the syntax <code class="docutils literal notranslate"><span class="pre">f.&lt;fieldname&gt;.facet.range.&lt;parameter&gt;</span></code>. The following parameters are mandatory when using range facetting.</p>
+<ul class="simple">
+<li><p><strong>facet.range.start:</strong> specifies the lowest bound of the range.</p></li>
+<li><p><strong>facet.range.end:</strong> specifies the upper bound of the range.</p></li>
+<li><p><strong>facet.range.gap:</strong> specifies the span of each range. This value will be added to the <em>start</em>
+Other options are available to further configure resulting facets, see <a class="reference external" href="https://solr.apache.org/guide/8_0/faceting.html#range-faceting">here</a>.</p></li>
+</ul>
+<p><strong><u>Pivot facetting</u></strong></p>
+<p>In a sense, this functionality allows you to extract sub-facets from the index. Using it is simple, you just have to set the <code class="docutils literal notranslate"><span class="pre">facet.pivot</span></code> parameter to a comma-separated list of fields to be used. The first field will be on level 1, the second on level 2, <em>etc</em>.</p>
+</div>
+<div class="section" id="d-other-useful-features">
+<h2>d. Other useful features<a class="headerlink" href="#d-other-useful-features" title="Permalink to this headline">¶</a></h2>
+<p><strong><u>More like this</u></strong></p>
+<p>Solr offers a way to identify documents similar to the ones returned after a query by setting the <code class="docutils literal notranslate"><span class="pre">mlt</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">true</span></code>. Two parameters are then important here.</p>
+<ul class="simple">
+<li><p><strong>mlt.count:</strong> how many similar documents should be returned for each document in the query response.</p></li>
+<li><p><strong>mlt.fl:</strong> which fields should be used to compute the similarity.
+More advance parameters can be used to further refine how the similarity is computed. You can for example set the minimum/maximum term frequency from which terms are taken into account, the minimum/maximum document frequency, <em>etc</em>. See <a class="reference external" href="https://solr.apache.org/guide/7_5/morelikethis.html#common-parameters-for-morelikethis">here</a> for more details.</p></li>
+</ul>
+<p><strong><u>Hit highlighting</u></strong></p>
+<p>Enabling highlighting allows Solr to return snippets of the resulting documents where the terms in the query appear. It is very useful to get a quick glance of the context of the terms used in the query. To enable it, you have to set the <code class="docutils literal notranslate"><span class="pre">hl</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">true</span></code>. From there, several options are available.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -341,7 +615,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="3-2-1-ranking-problem.html" title="previous page">Introduction to Ranking Problem</a>
+    <a class='left-prev' id="prev-link" href="3-2-1-ranking-problem.html" title="previous page">1. Introduction to Ranking Problem</a>
     <a class='right-next' id="next-link" href="3-2-3-result-representations.html" title="next page">Result representations</a>
 
         </div>
