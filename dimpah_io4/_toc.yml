@@ -3,7 +3,16 @@
 
 format: jb-book
 root: intro
-parts:      
+parts:
+  # Unit 1
+  - caption: Introduction to historical newspaper analysis and digitisation
+    chapters: 
+    - file: unit1/1-intro
+  # Unit 2
+  - caption: Information extraction and document understanding
+    chapters: 
+    - file: unit2/2-intro
+  # Unit 3
   - caption: Document retrieval and information seeking
     chapters:
     - file: unit3/3-intro
