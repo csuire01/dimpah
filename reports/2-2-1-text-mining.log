@@ -22,7 +22,7 @@ sentences = sent_tokenize("History is full of people who knew about history. But
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mLookupError[0m                               Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1748/2722065524.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1662/2722065524.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0msentences[0m [0;34m=[0m [0msent_tokenize[0m[0;34m([0m[0;34m"History is full of people who knew about history. But they kept on repeating the same mistakes again and again anyway."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py[0m in [0;36msent_tokenize[0;34m(text, language)[0m

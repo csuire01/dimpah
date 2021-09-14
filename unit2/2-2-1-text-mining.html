@@ -318,6 +318,11 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regex-basics">
+   RegEx Basics
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ii-natural-language-processing-nlp-programming-basics">
    ii. Natural Language Processing (NLP) Programming Basics
   </a>
@@ -512,6 +517,80 @@ Word embeddings (word2vec, BERT, etc)</p>
 </div>
 </div>
 </div>
+<div class="section" id="regex-basics">
+<h1>RegEx Basics<a class="headerlink" href="#regex-basics" title="Permalink to this headline">¶</a></h1>
+<p>Regular expressions or RegEx is a sequence of characters mainly used to find or replace patterns embedded in the text.</p>
+<ul class="simple">
+<li><p>\b returns a match where the specified pattern is at the beginning or at the end of a word.</p></li>
+<li><p>\d returns a match where the string contains digits (numbers from 0-9).</p></li>
+<li><p>\D returns a match where the string does not contain any digit. It is basically the opposite of \d.</p></li>
+<li><p>\w helps in extraction of alphanumeric characters only (characters from a to Z, digits from 0-9, and the underscore _ character)</p></li>
+<li><p>\W returns match at every non-alphanumeric character. Basically opposite of \w.</p></li>
+<li><p>(.) matches any character (except newline character)</p></li>
+<li><p>(^) checks whether the string starts with the given pattern or not.</p></li>
+<li><p>($) checks whether the string ends with the given pattern or not.</p></li>
+<li><p>(*) matches for zero or more occurrences of the pattern to the left of it</p></li>
+<li><p>(+) matches one or more occurrences of the pattern to the left of it</p></li>
+<li><p>(?) matches zero or one occurrence of the pattern left to it.</p></li>
+<li><p>(|) checks whether any of the two patterns, to its left and right, is present in the text or not.</p></li>
+</ul>
+<p>Python has a built-in module to work with regular expressions called <code class="docutils literal notranslate"><span class="pre">re</span></code>. Some common methods from this module are:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- re.match()
+- re.search()
+- re.findall()
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">re.match(pattern,</span> <span class="pre">string)</span></code> function returns a match object on success and none on failure.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;History&#39;</span><span class="p">,</span> <span class="s1">&#39;History is full of people who knew about history.&#39;</span><span class="p">)</span>
+
+<span class="n">result</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">re.search(pattern,</span> <span class="pre">string)</span></code> matches the first occurrence of a pattern in the entire string(and not just at the beginning).</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;history&#39;</span><span class="p">,</span> <span class="s1">&#39;History is full of people who knew about history.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>history
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">re.findall(pattern,</span> <span class="pre">string)</span></code> will return all the occurrences of the pattern from the string. I would recommend you to use re.findall() always, it can work like both <code class="docutils literal notranslate"><span class="pre">re.search()</span></code> and <code class="docutils literal notranslate"><span class="pre">re.match()</span></code>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;history&#39;</span><span class="p">,</span> <span class="s1">&#39;History is full of people who knew about history but they kept on repeating the history.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;history&#39;, &#39;history&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="ii-natural-language-processing-nlp-programming-basics">
 <h1>ii. Natural Language Processing (NLP) Programming Basics<a class="headerlink" href="#ii-natural-language-processing-nlp-programming-basics" title="Permalink to this headline">¶</a></h1>
 <p>For a deeper introduction into NLP programming techniques, we continue with the usage of NLTK. <a class="reference external" href="https://www.nltk.org/">NLTK</a> is a widely used standard Natural Language Processing (NLP) and Computational Linguistics (CL) Python library with prebuilt functions and utilities for the ease of use and implementation.</p>
@@ -547,7 +626,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1748</span><span class="o">/</span><span class="mf">2722065524.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1662</span><span class="o">/</span><span class="mf">2722065524.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="s2">&quot;History is full of people who knew about history. But they kept on repeating the same mistakes again and again anyway.&quot;</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
@@ -884,7 +963,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2-2-1-text-mining_57_0.png" src="../_images/2-2-1-text-mining_57_0.png" />
+<img alt="../_images/2-2-1-text-mining_68_0.png" src="../_images/2-2-1-text-mining_68_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -931,7 +1010,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2-2-1-text-mining_59_0.png" src="../_images/2-2-1-text-mining_59_0.png" />
+<img alt="../_images/2-2-1-text-mining_70_0.png" src="../_images/2-2-1-text-mining_70_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
