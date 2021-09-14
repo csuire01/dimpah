@@ -323,18 +323,23 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iii-collocations-and-n-grams">
-   iii. Collocations and N-grams
+  <a class="reference internal nav-link" href="#iii-stopwords">
+   iii. Stopwords
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iv-part-of-speech-pos-tagging">
-   iv. Part-of-speech (PoS) tagging
+  <a class="reference internal nav-link" href="#iv-collocations-and-n-grams">
+   iv. Collocations and n-grams
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v-chunking">
-   v. Chunking
+  <a class="reference internal nav-link" href="#v-part-of-speech-pos-tagging">
+   v. Part-of-speech (PoS) tagging
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vi-chunking">
+   vi. Chunking
   </a>
  </li>
 </ul>
@@ -517,443 +522,15 @@ Word embeddings (word2vec, BERT, etc)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting nltk
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading nltk-3.6.2-py3-none-any.whl (1.5 MB)
-?25l
-     |▎                               | 10 kB 31.8 MB/s eta 0:00:01
-     |▌                               | 20 kB 29.9 MB/s eta 0:00:01
-     |▊                               | 30 kB 12.9 MB/s eta 0:00:01
-     |█                               | 40 kB 5.5 MB/s eta 0:00:01
-     |█▏                              | 51 kB 6.7 MB/s eta 0:00:01
-     |█▍                              | 61 kB 7.3 MB/s eta 0:00:01
-     |█▋                              | 71 kB 6.9 MB/s eta 0:00:01
-     |█▉                              | 81 kB 7.8 MB/s eta 0:00:01
-     |██                              | 92 kB 5.9 MB/s eta 0:00:01
-     |██▎                             | 102 kB 6.5 MB/s eta 0:00:01
-     |██▌                             | 112 kB 6.5 MB/s eta 0:00:01
-     |██▊                             | 122 kB 6.5 MB/s eta 0:00:01
-     |███                             | 133 kB 6.5 MB/s eta 0:00:01
-     |███▏                            | 143 kB 6.5 MB/s eta 0:00:01
-     |███▍                            | 153 kB 6.5 MB/s eta 0:00:01
-     |███▋                            | 163 kB 6.5 MB/s eta 0:00:01
-     |███▉                            | 174 kB 6.5 MB/s eta 0:00:01
-     |████                            | 184 kB 6.5 MB/s eta 0:00:01
-     |████▎                           | 194 kB 6.5 MB/s eta 0:00:01
-     |████▌                           | 204 kB 6.5 MB/s eta 0:00:01
-     |████▊                           | 215 kB 6.5 MB/s eta 0:00:01
-     |█████                           | 225 kB 6.5 MB/s eta 0:00:01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |█████▏                          | 235 kB 6.5 MB/s eta 0:00:01
-     |█████▍                          | 245 kB 6.5 MB/s eta 0:00:01
-     |█████▋                          | 256 kB 6.5 MB/s eta 0:00:01
-     |█████▉                          | 266 kB 6.5 MB/s eta 0:00:01
-     |██████                          | 276 kB 6.5 MB/s eta 0:00:01
-     |██████▎                         | 286 kB 6.5 MB/s eta 0:00:01
-     |██████▌                         | 296 kB 6.5 MB/s eta 0:00:01
-     |██████▊                         | 307 kB 6.5 MB/s eta 0:00:01
-     |███████                         | 317 kB 6.5 MB/s eta 0:00:01
-     |███████▏                        | 327 kB 6.5 MB/s eta 0:00:01
-     |███████▍                        | 337 kB 6.5 MB/s eta 0:00:01
-     |███████▊                        | 348 kB 6.5 MB/s eta 0:00:01
-     |████████                        | 358 kB 6.5 MB/s eta 0:00:01
-     |████████▏                       | 368 kB 6.5 MB/s eta 0:00:01
-     |████████▍                       | 378 kB 6.5 MB/s eta 0:00:01
-     |████████▋                       | 389 kB 6.5 MB/s eta 0:00:01
-     |████████▉                       | 399 kB 6.5 MB/s eta 0:00:01
-     |█████████                       | 409 kB 6.5 MB/s eta 0:00:01
-     |█████████▎                      | 419 kB 6.5 MB/s eta 0:00:01
-     |█████████▌                      | 430 kB 6.5 MB/s eta 0:00:01
-     |█████████▊                      | 440 kB 6.5 MB/s eta 0:00:01
-     |██████████                      | 450 kB 6.5 MB/s eta 0:00:01
-     |██████████▏                     | 460 kB 6.5 MB/s eta 0:00:01
-     |██████████▍                     | 471 kB 6.5 MB/s eta 0:00:01
-     |██████████▋                     | 481 kB 6.5 MB/s eta 0:00:01
-     |██████████▉                     | 491 kB 6.5 MB/s eta 0:00:01
-     |███████████                     | 501 kB 6.5 MB/s eta 0:00:01
-     |███████████▎                    | 512 kB 6.5 MB/s eta 0:00:01
-     |███████████▌                    | 522 kB 6.5 MB/s eta 0:00:01
-     |███████████▊                    | 532 kB 6.5 MB/s eta 0:00:01
-     |████████████                    | 542 kB 6.5 MB/s eta 0:00:01
-     |████████████▏                   | 552 kB 6.5 MB/s eta 0:00:01
-     |████████████▍                   | 563 kB 6.5 MB/s eta 0:00:01
-     |████████████▋                   | 573 kB 6.5 MB/s eta 0:00:01
-     |████████████▉                   | 583 kB 6.5 MB/s eta 0:00:01
-     |█████████████                   | 593 kB 6.5 MB/s eta 0:00:01
-     |█████████████▎                  | 604 kB 6.5 MB/s eta 0:00:01
-     |█████████████▌                  | 614 kB 6.5 MB/s eta 0:00:01
-     |█████████████▊                  | 624 kB 6.5 MB/s eta 0:00:01
-     |██████████████                  | 634 kB 6.5 MB/s eta 0:00:01
-     |██████████████▏                 | 645 kB 6.5 MB/s eta 0:00:01
-     |██████████████▍                 | 655 kB 6.5 MB/s eta 0:00:01
-     |██████████████▋                 | 665 kB 6.5 MB/s eta 0:00:01
-     |██████████████▉                 | 675 kB 6.5 MB/s eta 0:00:01
-     |███████████████▏                | 686 kB 6.5 MB/s eta 0:00:01
-     |███████████████▍                | 696 kB 6.5 MB/s eta 0:00:01
-     |███████████████▋                | 706 kB 6.5 MB/s eta 0:00:01
-     |███████████████▉                | 716 kB 6.5 MB/s eta 0:00:01
-     |████████████████                | 727 kB 6.5 MB/s eta 0:00:01
-     |████████████████▎               | 737 kB 6.5 MB/s eta 0:00:01
-     |████████████████▌               | 747 kB 6.5 MB/s eta 0:00:01
-     |████████████████▊               | 757 kB 6.5 MB/s eta 0:00:01
-     |█████████████████               | 768 kB 6.5 MB/s eta 0:00:01
-     |█████████████████▏              | 778 kB 6.5 MB/s eta 0:00:01
-     |█████████████████▍              | 788 kB 6.5 MB/s eta 0:00:01
-     |█████████████████▋              | 798 kB 6.5 MB/s eta 0:00:01
-     |█████████████████▉              | 808 kB 6.5 MB/s eta 0:00:01
-     |██████████████████              | 819 kB 6.5 MB/s eta 0:00:01
-     |██████████████████▎             | 829 kB 6.5 MB/s eta 0:00:01
-     |██████████████████▌             | 839 kB 6.5 MB/s eta 0:00:01
-     |██████████████████▊             | 849 kB 6.5 MB/s eta 0:00:01
-     |███████████████████             | 860 kB 6.5 MB/s eta 0:00:01
-     |███████████████████▏            | 870 kB 6.5 MB/s eta 0:00:01
-     |███████████████████▍            | 880 kB 6.5 MB/s eta 0:00:01
-     |███████████████████▋            | 890 kB 6.5 MB/s eta 0:00:01
-     |███████████████████▉            | 901 kB 6.5 MB/s eta 0:00:01
-     |████████████████████            | 911 kB 6.5 MB/s eta 0:00:01
-     |████████████████████▎           | 921 kB 6.5 MB/s eta 0:00:01
-     |████████████████████▌           | 931 kB 6.5 MB/s eta 0:00:01
-     |████████████████████▊           | 942 kB 6.5 MB/s eta 0:00:01
-     |█████████████████████           | 952 kB 6.5 MB/s eta 0:00:01
-     |█████████████████████▏          | 962 kB 6.5 MB/s eta 0:00:01
-     |█████████████████████▍          | 972 kB 6.5 MB/s eta 0:00:01
-     |█████████████████████▋          | 983 kB 6.5 MB/s eta 0:00:01
-     |█████████████████████▉          | 993 kB 6.5 MB/s eta 0:00:01
-     |██████████████████████          | 1.0 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████▎         | 1.0 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████▌         | 1.0 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████▉         | 1.0 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████         | 1.0 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████▎        | 1.1 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████▌        | 1.1 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████▊        | 1.1 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████        | 1.1 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████▏       | 1.1 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████▍       | 1.1 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████▋       | 1.1 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████▉       | 1.1 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████       | 1.1 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████▎      | 1.1 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████▌      | 1.2 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████▊      | 1.2 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████      | 1.2 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████▏     | 1.2 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████▍     | 1.2 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████▋     | 1.2 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████▉     | 1.2 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████     | 1.2 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████▎    | 1.2 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████▌    | 1.2 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████▊    | 1.3 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████████    | 1.3 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████████▏   | 1.3 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████████▍   | 1.3 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████████▋   | 1.3 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████████▉   | 1.3 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████████   | 1.3 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████████▎  | 1.3 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████████▌  | 1.3 MB 6.5 MB/s eta 0:00:01
-     |█████████████████████████████▊  | 1.4 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████████  | 1.4 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████████▎ | 1.4 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████████▌ | 1.4 MB 6.5 MB/s eta 0:00:01
-     |██████████████████████████████▊ | 1.4 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████████ | 1.4 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████████▏| 1.4 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████████▍| 1.4 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████████▋| 1.4 MB 6.5 MB/s eta 0:00:01
-     |███████████████████████████████▉| 1.4 MB 6.5 MB/s eta 0:00:01
-     |████████████████████████████████| 1.5 MB 6.5 MB/s 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hCollecting tqdm
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading tqdm-4.62.2-py2.py3-none-any.whl (76 kB)
-?25l
-     |████▎                           | 10 kB 45.1 MB/s eta 0:00:01
-     |████████▋                       | 20 kB 55.3 MB/s eta 0:00:01
-     |█████████████                   | 30 kB 68.1 MB/s eta 0:00:01
-     |█████████████████▏              | 40 kB 76.4 MB/s eta 0:00:01
-     |█████████████████████▌          | 51 kB 82.2 MB/s eta 0:00:01
-     |█████████████████████████▉      | 61 kB 89.1 MB/s eta 0:00:01
-     |██████████████████████████████  | 71 kB 93.2 MB/s eta 0:00:01
-     |████████████████████████████████| 76 kB 16.9 MB/s 
-?25hRequirement already satisfied: click in /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages (from nltk) (7.1.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting joblib
-  Downloading joblib-1.0.1-py3-none-any.whl (303 kB)
-?25l
-     |█                               | 10 kB 53.5 MB/s eta 0:00:01
-     |██▏                             | 20 kB 62.2 MB/s eta 0:00:01
-     |███▎                            | 30 kB 75.7 MB/s eta 0:00:01
-     |████▎                           | 40 kB 84.5 MB/s eta 0:00:01
-     |█████▍                          | 51 kB 86.7 MB/s eta 0:00:01
-     |██████▌                         | 61 kB 90.4 MB/s eta 0:00:01
-     |███████▋                        | 71 kB 92.9 MB/s eta 0:00:01
-     |████████▋                       | 81 kB 97.0 MB/s eta 0:00:01
-     |█████████▊                      | 92 kB 99.4 MB/s eta 0:00:01
-     |██████████▉                     | 102 kB 100.8 MB/s eta 0:00:01
-     |████████████                    | 112 kB 100.8 MB/s eta 0:00:01
-     |█████████████                   | 122 kB 100.8 MB/s eta 0:00:01
-     |██████████████                  | 133 kB 100.8 MB/s eta 0:00:01
-     |███████████████▏                | 143 kB 100.8 MB/s eta 0:00:01
-     |████████████████▏               | 153 kB 100.8 MB/s eta 0:00:01
-     |█████████████████▎              | 163 kB 100.8 MB/s eta 0:00:01
-     |██████████████████▍             | 174 kB 100.8 MB/s eta 0:00:01
-     |███████████████████▌            | 184 kB 100.8 MB/s eta 0:00:01
-     |████████████████████▌           | 194 kB 100.8 MB/s eta 0:00:01
-     |█████████████████████▋          | 204 kB 100.8 MB/s eta 0:00:01
-     |██████████████████████▊         | 215 kB 100.8 MB/s eta 0:00:01
-     |███████████████████████▉        | 225 kB 100.8 MB/s eta 0:00:01
-     |████████████████████████▉       | 235 kB 100.8 MB/s eta 0:00:01
-     |██████████████████████████      | 245 kB 100.8 MB/s eta 0:00:01
-     |███████████████████████████     | 256 kB 100.8 MB/s eta 0:00:01
-     |████████████████████████████    | 266 kB 100.8 MB/s eta 0:00:01
-     |█████████████████████████████▏  | 276 kB 100.8 MB/s eta 0:00:01
-     |██████████████████████████████▎ | 286 kB 100.8 MB/s eta 0:00:01
-     |███████████████████████████████▍| 296 kB 100.8 MB/s eta 0:00:01
-     |████████████████████████████████| 303 kB 100.8 MB/s 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hCollecting regex
-  Downloading regex-2021.8.28-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (761 kB)
-?25l
-     |▍                               | 10 kB 46.9 MB/s eta 0:00:01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |▉                               | 20 kB 56.4 MB/s eta 0:00:01
-     |█▎                              | 30 kB 68.7 MB/s eta 0:00:01
-     |█▊                              | 40 kB 76.9 MB/s eta 0:00:01
-     |██▏                             | 51 kB 82.1 MB/s eta 0:00:01
-     |██▋                             | 61 kB 89.6 MB/s eta 0:00:01
-     |███                             | 71 kB 92.3 MB/s eta 0:00:01
-     |███▍                            | 81 kB 95.5 MB/s eta 0:00:01
-     |███▉                            | 92 kB 96.7 MB/s eta 0:00:01
-     |████▎                           | 102 kB 98.8 MB/s eta 0:00:01
-     |████▊                           | 112 kB 98.8 MB/s eta 0:00:01
-     |█████▏                          | 122 kB 98.8 MB/s eta 0:00:01
-     |█████▋                          | 133 kB 98.8 MB/s eta 0:00:01
-     |██████                          | 143 kB 98.8 MB/s eta 0:00:01
-     |██████▌                         | 153 kB 98.8 MB/s eta 0:00:01
-     |██████▉                         | 163 kB 98.8 MB/s eta 0:00:01
-     |███████▎                        | 174 kB 98.8 MB/s eta 0:00:01
-     |███████▊                        | 184 kB 98.8 MB/s eta 0:00:01
-     |████████▏                       | 194 kB 98.8 MB/s eta 0:00:01
-     |████████▋                       | 204 kB 98.8 MB/s eta 0:00:01
-     |█████████                       | 215 kB 98.8 MB/s eta 0:00:01
-     |█████████▌                      | 225 kB 98.8 MB/s eta 0:00:01
-     |██████████                      | 235 kB 98.8 MB/s eta 0:00:01
-     |██████████▎                     | 245 kB 98.8 MB/s eta 0:00:01
-     |██████████▊                     | 256 kB 98.8 MB/s eta 0:00:01
-     |███████████▏                    | 266 kB 98.8 MB/s eta 0:00:01
-     |███████████▋                    | 276 kB 98.8 MB/s eta 0:00:01
-     |████████████                    | 286 kB 98.8 MB/s eta 0:00:01
-     |████████████▌                   | 296 kB 98.8 MB/s eta 0:00:01
-     |█████████████                   | 307 kB 98.8 MB/s eta 0:00:01
-     |█████████████▍                  | 317 kB 98.8 MB/s eta 0:00:01
-     |█████████████▊                  | 327 kB 98.8 MB/s eta 0:00:01
-     |██████████████▏                 | 337 kB 98.8 MB/s eta 0:00:01
-     |██████████████▋                 | 348 kB 98.8 MB/s eta 0:00:01
-     |███████████████                 | 358 kB 98.8 MB/s eta 0:00:01
-     |███████████████▌                | 368 kB 98.8 MB/s eta 0:00:01
-     |████████████████                | 378 kB 98.8 MB/s eta 0:00:01
-     |████████████████▍               | 389 kB 98.8 MB/s eta 0:00:01
-     |████████████████▉               | 399 kB 98.8 MB/s eta 0:00:01
-     |█████████████████▏              | 409 kB 98.8 MB/s eta 0:00:01
-     |█████████████████▋              | 419 kB 98.8 MB/s eta 0:00:01
-     |██████████████████              | 430 kB 98.8 MB/s eta 0:00:01
-     |██████████████████▌             | 440 kB 98.8 MB/s eta 0:00:01
-     |███████████████████             | 450 kB 98.8 MB/s eta 0:00:01
-     |███████████████████▍            | 460 kB 98.8 MB/s eta 0:00:01
-     |███████████████████▉            | 471 kB 98.8 MB/s eta 0:00:01
-     |████████████████████▎           | 481 kB 98.8 MB/s eta 0:00:01
-     |████████████████████▋           | 491 kB 98.8 MB/s eta 0:00:01
-     |█████████████████████           | 501 kB 98.8 MB/s eta 0:00:01
-     |█████████████████████▌          | 512 kB 98.8 MB/s eta 0:00:01
-     |██████████████████████          | 522 kB 98.8 MB/s eta 0:00:01
-     |██████████████████████▍         | 532 kB 98.8 MB/s eta 0:00:01
-     |██████████████████████▉         | 542 kB 98.8 MB/s eta 0:00:01
-     |███████████████████████▎        | 552 kB 98.8 MB/s eta 0:00:01
-     |███████████████████████▊        | 563 kB 98.8 MB/s eta 0:00:01
-     |████████████████████████        | 573 kB 98.8 MB/s eta 0:00:01
-     |████████████████████████▌       | 583 kB 98.8 MB/s eta 0:00:01
-     |█████████████████████████       | 593 kB 98.8 MB/s eta 0:00:01
-     |█████████████████████████▍      | 604 kB 98.8 MB/s eta 0:00:01
-     |█████████████████████████▉      | 614 kB 98.8 MB/s eta 0:00:01
-     |██████████████████████████▎     | 624 kB 98.8 MB/s eta 0:00:01
-     |██████████████████████████▊     | 634 kB 98.8 MB/s eta 0:00:01
-     |███████████████████████████▏    | 645 kB 98.8 MB/s eta 0:00:01
-     |███████████████████████████▌    | 655 kB 98.8 MB/s eta 0:00:01
-     |████████████████████████████    | 665 kB 98.8 MB/s eta 0:00:01
-     |████████████████████████████▍   | 675 kB 98.8 MB/s eta 0:00:01
-     |████████████████████████████▉   | 686 kB 98.8 MB/s eta 0:00:01
-     |█████████████████████████████▎  | 696 kB 98.8 MB/s eta 0:00:01
-     |█████████████████████████████▊  | 706 kB 98.8 MB/s eta 0:00:01
-     |██████████████████████████████▏ | 716 kB 98.8 MB/s eta 0:00:01
-     |██████████████████████████████▋ | 727 kB 98.8 MB/s eta 0:00:01
-     |███████████████████████████████ | 737 kB 98.8 MB/s eta 0:00:01
-     |███████████████████████████████▍| 747 kB 98.8 MB/s eta 0:00:01
-     |███████████████████████████████▉| 757 kB 98.8 MB/s eta 0:00:01
-     |████████████████████████████████| 761 kB 98.8 MB/s 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hInstalling collected packages: tqdm, regex, joblib, nltk
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed joblib-1.0.1 nltk-3.6.2 regex-2021.8.28 tqdm-4.62.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nltk in /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages (3.4.5)
+Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages (from nltk) (1.16.0)
 </pre></div>
 </div>
 </div>
 </div>
-<p>First, we can check the count and frequency distributions of words in a text. For example, if we take the previous <code class="docutils literal notranslate"><span class="pre">sentence</span></code>, we obtain:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.probability</span> <span class="kn">import</span> <span class="n">FreqDist</span>
-
-<span class="n">fdist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">fdist</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;again&#39;, 2), (&#39;History&#39;, 1), (&#39;is&#39;, 1), (&#39;full&#39;, 1), (&#39;of&#39;, 1), (&#39;people&#39;, 1), (&#39;who&#39;, 1), (&#39;knew&#39;, 1), (&#39;about&#39;, 1), (&#39;history&#39;, 1)]
-</pre></div>
-</div>
-</div>
-</div>
-<p>When we first invoke <a class="reference external" href="http://www.nltk.org/api/nltk.html?highlight=freqdist">FreqDist</a>, we pass the name of the text as an argument. The expression <code class="docutils literal notranslate"><span class="pre">most_common(10</span></code>) gives us a list of the 10 most frequently occurring types in the text (in this case, it will print all the words in the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> since the length of the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> is less than 10).</p>
-</div>
-<div class="section" id="iii-collocations-and-n-grams">
-<h1>iii. Collocations and N-grams<a class="headerlink" href="#iii-collocations-and-n-grams" title="Permalink to this headline">¶</a></h1>
-<p>A <em>collocation</em> is a sequence of words that occur together unusually often. To understand collocations, we start by extracting from the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> a list of word pairs, also known as bigrams. The <em>bigrams</em> are lists of two words (<em>bi</em>), while n-grams are lists of <em>n</em> words (e.g. ..). This is easily accomplished with the function <code class="docutils literal notranslate"><span class="pre">bigrams()</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">bigrams</span>
-
-<span class="n">list_of_bigrams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bigrams</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">list_of_bigrams</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;History&#39;, &#39;is&#39;), (&#39;is&#39;, &#39;full&#39;), (&#39;full&#39;, &#39;of&#39;), (&#39;of&#39;, &#39;people&#39;), (&#39;people&#39;, &#39;who&#39;), (&#39;who&#39;, &#39;knew&#39;), (&#39;knew&#39;, &#39;about&#39;), (&#39;about&#39;, &#39;history&#39;), (&#39;history&#39;, &#39;but&#39;), (&#39;but&#39;, &#39;kept&#39;), (&#39;kept&#39;, &#39;on&#39;), (&#39;on&#39;, &#39;repeating&#39;), (&#39;repeating&#39;, &#39;the&#39;), (&#39;the&#39;, &#39;same&#39;), (&#39;same&#39;, &#39;mistakes&#39;), (&#39;mistakes&#39;, &#39;again&#39;), (&#39;again&#39;, &#39;and&#39;), (&#39;and&#39;, &#39;again&#39;), (&#39;again&#39;, &#39;anyway&#39;), (&#39;anyway&#39;, &#39;.&#39;)]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Stopwords…</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
-<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py</span> in <span class="ni">__load</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">83</span>                     <span class="n">root</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subdir</span><span class="p">,</span> <span class="n">zip_name</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span>                 <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
-<span class="g g-Whitespace">    </span><span class="mi">582</span>     <span class="n">resource_not_found</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sep</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sep</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">583</span>     <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="n">resource_not_found</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span> 
-
-<span class="ne">LookupError</span>: 
-<span class="o">**********************************************************************</span>
-  <span class="n">Resource</span> <span class="n">stopwords</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span>
-  <span class="n">Please</span> <span class="n">use</span> <span class="n">the</span> <span class="n">NLTK</span> <span class="n">Downloader</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">the</span> <span class="n">resource</span><span class="p">:</span>
-
-  <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">nltk</span>
-  <span class="o">&gt;&gt;&gt;</span> <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
-  
-  <span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">see</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">nltk</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">html</span>
-
-  <span class="n">Attempted</span> <span class="n">to</span> <span class="n">load</span> <span class="n">corpora</span><span class="o">/</span><span class="n">stopwords</span><span class="o">.</span><span class="n">zip</span><span class="o">/</span><span class="n">stopwords</span><span class="o">/</span>
-
-  <span class="n">Searched</span> <span class="ow">in</span><span class="p">:</span>
-    <span class="o">-</span> <span class="s1">&#39;/home/runner/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/share/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/local/share/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/lib/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/local/lib/nltk_data&#39;</span>
-<span class="o">**********************************************************************</span>
-
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1649</span><span class="o">/</span><span class="mf">524749441.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, attr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span>             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;LazyCorpusLoader object has no attribute &#39;__bases__&#39;&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span> 
-<span class="ne">--&gt; </span><span class="mi">120</span>         <span class="bp">self</span><span class="o">.</span><span class="n">__load</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span>         <span class="c1"># This looks circular, but its not, since __load() changes our</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>         <span class="c1"># __class__ to something new:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py</span> in <span class="ni">__load</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>                     <span class="n">root</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subdir</span><span class="p">,</span> <span class="n">zip_name</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span>                 <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">85</span>                     <span class="k">raise</span> <span class="n">e</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span> 
-<span class="g g-Whitespace">     </span><span class="mi">87</span>         <span class="c1"># Load the corpus.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py</span> in <span class="ni">__load</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">80</span>                 <span class="n">root</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subdir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__name</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span>             <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span>                 <span class="k">try</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
-<span class="g g-Whitespace">    </span><span class="mi">581</span>     <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">70</span>
-<span class="g g-Whitespace">    </span><span class="mi">582</span>     <span class="n">resource_not_found</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sep</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sep</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">583</span>     <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="n">resource_not_found</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span> 
-<span class="g g-Whitespace">    </span><span class="mi">585</span> 
-
-<span class="ne">LookupError</span>: 
-<span class="o">**********************************************************************</span>
-  <span class="n">Resource</span> <span class="n">stopwords</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span>
-  <span class="n">Please</span> <span class="n">use</span> <span class="n">the</span> <span class="n">NLTK</span> <span class="n">Downloader</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">the</span> <span class="n">resource</span><span class="p">:</span>
-
-  <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">nltk</span>
-  <span class="o">&gt;&gt;&gt;</span> <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
-  
-  <span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">see</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">nltk</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">html</span>
-
-  <span class="n">Attempted</span> <span class="n">to</span> <span class="n">load</span> <span class="n">corpora</span><span class="o">/</span><span class="n">stopwords</span>
-
-  <span class="n">Searched</span> <span class="ow">in</span><span class="p">:</span>
-    <span class="o">-</span> <span class="s1">&#39;/home/runner/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/share/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/local/share/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/lib/nltk_data&#39;</span>
-    <span class="o">-</span> <span class="s1">&#39;/usr/local/lib/nltk_data&#39;</span>
-<span class="o">**********************************************************************</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Word and sentence tokenization..</p>
+<p>Now, in order to obtain the list of words from a sentence, we need to apply an NLP technique called <em>tokenization</em>.
+Tokenization is the task of splitting the text (which otherwise is just a long stream of characters) into <em>tokens</em>, our basic unit of processing. This is quite close to what English speakers would call <em>words</em>. Before separating a sentence in words, we first need to obtain the sentences from a text, a process called <em>sentence splitting</em>.</p>
+<p>Thus, for separating a text in sentences, we can use the NLTK method <code class="docutils literal notranslate"><span class="pre">sent_tokenize</span></code> and for obtaining the <em>tokens</em> (<em>words</em>) in a sentence, we use  <code class="docutils literal notranslate"><span class="pre">word_tokenize</span></code> as it follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">sent_tokenize</span>
@@ -964,6 +541,66 @@ Word embeddings (word2vec, BERT, etc)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="s2">&quot;History is full of people who knew about history. But they kept on repeating the same mistakes again and again anyway.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1748</span><span class="o">/</span><span class="mf">2722065524.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="s2">&quot;History is full of people who knew about history. But they kept on repeating the same mistakes again and again anyway.&quot;</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">105</span><span class="s2">     tokenizer = load(&#39;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&#39;.format(language))</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2">     return tokenizer.tokenize(text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span><span class="s2">     # Load the resource.</span>
+<span class="ne">--&gt; </span><span class="mi">868</span><span class="s2">     opened_resource = _open(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span><span class="s2">     if format == &#39;raw&#39;:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">991</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">992</span><span class="s2">     if protocol is None or protocol.lower() == &#39;nltk&#39;:</span>
+<span class="ne">--&gt; </span><span class="mi">993</span><span class="s2">         return find(path_, path + [&#39;&#39;]).open()</span>
+<span class="g g-Whitespace">    </span><span class="mi">994</span><span class="s2">     elif protocol.lower() == &#39;file&#39;:</span>
+<span class="g g-Whitespace">    </span><span class="mi">995</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
+<span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">     sep = &#39;*&#39; * 70</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">     resource_not_found = &#39;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#39; % (sep, msg, sep)</span>
+<span class="ne">--&gt; </span><span class="mi">701</span><span class="s2">     raise LookupError(resource_not_found)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2"> </span>
+
+<span class="ne">LookupError</span>: 
+<span class="s2">**********************************************************************</span>
+<span class="s2">  Resource punkt not found.</span>
+<span class="s2">  Please use the NLTK Downloader to obtain the resource:</span>
+
+<span class="s2">  &gt;&gt;&gt; import nltk</span>
+<span class="s2">  &gt;&gt;&gt; nltk.download(&#39;punkt&#39;)</span>
+<span class="s2">  </span>
+<span class="s2">  For more information see: https://www.nltk.org/data.html</span>
+
+<span class="s2">  Attempted to load tokenizers/punkt/PY3/english.pickle</span>
+
+<span class="s2">  Searched in:</span>
+<span class="s2">    - &#39;/home/runner/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/local/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;&#39;</span>
+<span class="s2">**********************************************************************</span>
 </pre></div>
 </div>
 </div>
@@ -1012,15 +649,133 @@ Word embeddings (word2vec, BERT, etc)</p>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
 </div>
-<div class="section" id="iv-part-of-speech-pos-tagging">
-<h1>iv. Part-of-speech (PoS) tagging<a class="headerlink" href="#iv-part-of-speech-pos-tagging" title="Permalink to this headline">¶</a></h1>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;History&#39;, &#39;is&#39;, &#39;full&#39;, &#39;of&#39;, &#39;people&#39;, &#39;who&#39;, &#39;knew&#39;, &#39;about&#39;, &#39;history&#39;, &#39;.&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="iii-stopwords">
+<h1>iii. Stopwords<a class="headerlink" href="#iii-stopwords" title="Permalink to this headline">¶</a></h1>
+<p>When working with text mining applications, we often use the term <em>stopwords</em>. Stopwords are basically a set of commonly used words in any language (not just English). The reason why stopwords are critical to many applications is that, if we remove the words that are very commonly used in a given language, we can focus on the <em>important</em> words instead.</p>
+<p>For example, in the context of a search engine, let’s consider that your search is <em>how to develop text mining applications?</em></p>
+<p>If the search engine tries to find web pages that contained the terms <em>how</em>, <em>to</em>, <em>develop</em>, <em>text</em>, <em>mining</em>, <em>applications</em>, the search engine will find a lot more pages that contain the terms <em>how</em> and <em>to</em> than pages that contain information about developing text mining applications because the terms <em>how</em> and <em>to</em> are very commonly used in the English language.</p>
+<p>If we disregard these two terms, the search engine can actually focus on retrieving pages that contain the keywords: <em>develop</em>, <em>text</em>, <em>mining</em>, <em>applications</em>, which would bring up pages that are actually of interest.</p>
+<p>In NLP, there are some general developed pre-set lists with stopwords for many languages. First, we download them using <code class="docutils literal notranslate"><span class="pre">nltk.downloader</span></code>, and then we look at the English pre-set list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python -m nltk.downloader stopwords
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, for English, NLTK contains a list of 179 most commonly used words. You can also try other languages, by replacing <code class="docutils literal notranslate"><span class="pre">'english'</span></code> it with one of your choice (written in lowercase, e.g., <code class="docutils literal notranslate"><span class="pre">'turkish'</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stop_words</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>179
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;does&#39;, &#39;were&#39;, &#39;own&#39;, &quot;mustn&#39;t&quot;, &#39;under&#39;, &#39;once&#39;, &#39;being&#39;, &#39;your&#39;, &#39;now&#39;, &#39;shan&#39;, &#39;himself&#39;, &#39;me&#39;, &#39;ain&#39;, &#39;what&#39;, &#39;didn&#39;, &#39;how&#39;, &#39;there&#39;, &quot;needn&#39;t&quot;, &#39;couldn&#39;, &#39;other&#39;, &#39;weren&#39;, &#39;aren&#39;, &#39;are&#39;, &#39;she&#39;, &#39;was&#39;, &quot;shouldn&#39;t&quot;, &#39;yourselves&#39;, &#39;can&#39;, &#39;he&#39;, &#39;a&#39;, &#39;his&#39;, &#39;no&#39;, &#39;then&#39;, &#39;while&#39;, &quot;you&#39;ll&quot;, &#39;wasn&#39;, &#39;is&#39;, &#39;my&#39;, &#39;we&#39;, &#39;for&#39;, &#39;up&#39;, &#39;these&#39;, &#39;doesn&#39;, &quot;haven&#39;t&quot;, &#39;herself&#39;, &#39;few&#39;, &#39;all&#39;, &#39;between&#39;, &quot;shan&#39;t&quot;, &#39;most&#39;, &#39;been&#39;, &#39;to&#39;, &#39;do&#39;, &#39;such&#39;, &quot;she&#39;s&quot;, &#39;our&#39;, &#39;ll&#39;, &#39;itself&#39;, &quot;mightn&#39;t&quot;, &#39;won&#39;, &#39;same&#39;, &#39;of&#39;, &#39;and&#39;, &#39;should&#39;, &#39;be&#39;, &#39;don&#39;, &#39;where&#39;, &quot;hadn&#39;t&quot;, &#39;i&#39;, &#39;y&#39;, &#39;over&#39;, &quot;you&#39;re&quot;, &#39;nor&#39;, &#39;m&#39;, &#39;but&#39;, &#39;on&#39;, &quot;doesn&#39;t&quot;, &#39;they&#39;, &#39;by&#39;, &#39;with&#39;, &#39;theirs&#39;, &#39;this&#39;, &#39;him&#39;, &#39;into&#39;, &#39;their&#39;, &#39;mightn&#39;, &#39;mustn&#39;, &#39;just&#39;, &quot;that&#39;ll&quot;, &quot;isn&#39;t&quot;, &quot;couldn&#39;t&quot;, &#39;down&#39;, &#39;here&#39;, &#39;hers&#39;, &#39;you&#39;, &#39;or&#39;, &#39;it&#39;, &#39;the&#39;, &#39;until&#39;, &#39;that&#39;, &#39;not&#39;, &#39;only&#39;, &#39;ve&#39;, &#39;during&#39;, &#39;s&#39;, &#39;yours&#39;, &#39;at&#39;, &#39;which&#39;, &#39;against&#39;, &#39;than&#39;, &#39;out&#39;, &#39;her&#39;, &quot;it&#39;s&quot;, &#39;if&#39;, &#39;o&#39;, &#39;myself&#39;, &#39;after&#39;, &#39;those&#39;, &#39;very&#39;, &#39;as&#39;, &#39;doing&#39;, &#39;has&#39;, &#39;some&#39;, &quot;wouldn&#39;t&quot;, &#39;ours&#39;, &#39;yourself&#39;, &#39;hadn&#39;, &#39;too&#39;, &#39;when&#39;, &#39;about&#39;, &#39;haven&#39;, &#39;above&#39;, &#39;its&#39;, &quot;should&#39;ve&quot;, &#39;have&#39;, &#39;further&#39;, &#39;did&#39;, &#39;both&#39;, &#39;through&#39;, &quot;wasn&#39;t&quot;, &#39;why&#39;, &#39;re&#39;, &#39;whom&#39;, &#39;ourselves&#39;, &#39;t&#39;, &quot;you&#39;ve&quot;, &quot;you&#39;d&quot;, &#39;hasn&#39;, &#39;an&#39;, &#39;again&#39;, &quot;didn&#39;t&quot;, &#39;so&#39;, &#39;them&#39;, &quot;hasn&#39;t&quot;, &#39;who&#39;, &#39;having&#39;, &#39;before&#39;, &#39;had&#39;, &#39;themselves&#39;, &#39;off&#39;, &#39;any&#39;, &#39;shouldn&#39;, &#39;more&#39;, &#39;below&#39;, &#39;from&#39;, &quot;don&#39;t&quot;, &#39;because&#39;, &#39;ma&#39;, &quot;won&#39;t&quot;, &#39;in&#39;, &#39;wouldn&#39;, &#39;each&#39;, &quot;weren&#39;t&quot;, &#39;isn&#39;, &quot;aren&#39;t&quot;, &#39;will&#39;, &#39;am&#39;, &#39;needn&#39;, &#39;d&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we have the tokens, we can check the count and frequency distributions of words in a text. Computing these word frequencies in large collections of texts can also reveal the most commonly used words (or <em>stopwords</em>). For example, if we take the previous <code class="docutils literal notranslate"><span class="pre">sentence</span></code>, we obtain:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.probability</span> <span class="kn">import</span> <span class="n">FreqDist</span>
+
+<span class="n">fdist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fdist</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;again&#39;, 2), (&#39;History&#39;, 1), (&#39;is&#39;, 1), (&#39;full&#39;, 1), (&#39;of&#39;, 1), (&#39;people&#39;, 1), (&#39;who&#39;, 1), (&#39;knew&#39;, 1), (&#39;about&#39;, 1), (&#39;history&#39;, 1)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we first invoke <a class="reference external" href="http://www.nltk.org/api/nltk.html?highlight=freqdist">FreqDist</a>, we pass the name of the text as an argument. The expression <code class="docutils literal notranslate"><span class="pre">most_common(10</span></code>) gives us a list of the 10 most frequently occurring types in the text (in this case, it will print all the words in the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> since the length of the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> is less than 10).</p>
+</div>
+<div class="section" id="iv-collocations-and-n-grams">
+<h1>iv. Collocations and n-grams<a class="headerlink" href="#iv-collocations-and-n-grams" title="Permalink to this headline">¶</a></h1>
+<p>A <em>collocation</em> is a sequence of words that occur together unusually often. To understand collocations, we start by extracting from the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> a list of word pairs, also known as bigrams. The <em>bigrams</em> are lists of two words (<em>bi</em>), while n-grams are lists of <em>n</em> words (e.g. ..). This is easily accomplished with the function <code class="docutils literal notranslate"><span class="pre">bigrams()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">bigrams</span>
+
+<span class="n">list_of_bigrams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bigrams</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">list_of_bigrams</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;History&#39;, &#39;is&#39;), (&#39;is&#39;, &#39;full&#39;), (&#39;full&#39;, &#39;of&#39;), (&#39;of&#39;, &#39;people&#39;), (&#39;people&#39;, &#39;who&#39;), (&#39;who&#39;, &#39;knew&#39;), (&#39;knew&#39;, &#39;about&#39;), (&#39;about&#39;, &#39;history&#39;), (&#39;history&#39;, &#39;but&#39;), (&#39;but&#39;, &#39;kept&#39;), (&#39;kept&#39;, &#39;on&#39;), (&#39;on&#39;, &#39;repeating&#39;), (&#39;repeating&#39;, &#39;the&#39;), (&#39;the&#39;, &#39;same&#39;), (&#39;same&#39;, &#39;mistakes&#39;), (&#39;mistakes&#39;, &#39;again&#39;), (&#39;again&#39;, &#39;and&#39;), (&#39;and&#39;, &#39;again&#39;), (&#39;again&#39;, &#39;anyway&#39;), (&#39;anyway&#39;, &#39;.&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="v-part-of-speech-pos-tagging">
+<h1>v. Part-of-speech (PoS) tagging<a class="headerlink" href="#v-part-of-speech-pos-tagging" title="Permalink to this headline">¶</a></h1>
+<p>The part of speech explains how a word is used in a sentence. There are eight main parts of speech - nouns, pronouns, adjectives, verbs, adverbs, prepositions, conjunctions and interjections.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Noun (N)- Daniel, London, table, dog, teacher, pen, city, happiness, hope
+- Verb (V)- go, speak, run, eat, play, live, walk, have, like, are, is
+- Adjective(ADJ)- big, happy, green, young, fun, crazy, three
+- Adverb(ADV)- slowly, quietly, very, always, never, too, well, tomorrow
+- Preposition (P)- at, on, in, from, with, near, between, about, under
+- Conjunction (CON)- and, or, but, because, so, yet, unless, since, if
+- Pronoun(PRO)- I, you, we, they, he, she, it, me, us, them, him, her, this
+- Interjection (INT)- Ouch! Wow! Great! Help! Oh! Hey! Hi!
+</pre></div>
+</div>
 <p>A part-of-speech tagger, or POS-tagger, processes a sequence of words, and attaches a part of speech tag to each word:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">pos_tag</span>
 
-<span class="n">pos_tag</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="n">pos_tags_sentence</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+
+<span class="n">pos_tags_sentence</span>
 </pre></div>
 </div>
 </div>
@@ -1062,23 +817,123 @@ Word embeddings (word2vec, BERT, etc)</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">help</span>
 
-<span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">(</span><span class="s2">&quot;NN&quot;</span><span class="p">)</span>
+<span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">(</span><span class="s2">&quot;NNS&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NN: noun, common, singular or mass
-    common-carrier cabbage knuckle-duster Casino afghan shed thermostat
-    investment slide humour falloff slick wind hyena override subhumanity
-    machinist ...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NNS: noun, common, plural
+    undergraduates scotches bric-a-brac products bodyguards facets coasts
+    divestitures storehouses designs clubs fragrances averages
+    subjectivists apprehensions muses factory-jobs ...
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="v-chunking">
-<h1>v. Chunking<a class="headerlink" href="#v-chunking" title="Permalink to this headline">¶</a></h1>
-<p>Chunking segments texts and depends on PoS tagging. Like tokenization, which omits whitespace, chunking usually selects a subset of the tokens. Also like tokenization, the pieces produced by a chunker do not overlap in the source text.</p>
+<div class="section" id="vi-chunking">
+<h1>vi. Chunking<a class="headerlink" href="#vi-chunking" title="Permalink to this headline">¶</a></h1>
+<p>Chunking segments texts and depends on PoS tagging. Like tokenization, which omits whitespace, chunking usually selects a subset of the tokens. Instead of just simple tokens which may not represent the actual meaning of the text, its advisable to use phrases such as <em>South Africa</em> as a single word instead of <em>South</em> and <em>Africa</em> separate words. Also like tokenization, the pieces produced by a chunker do not overlap in the source text. To find the chunk structure for a given sentence, the <code class="docutils literal notranslate"><span class="pre">RegexpParser</span></code> chunker begins with a flat structure in which no tokens are chunked. The chunking rules are applied in turn, successively updating the chunk structure. Once all of the rules have been invoked, the resulting chunk structure is returned.</p>
+<p>The next example shows a simple chunk grammar consisting of two rules. The first rule matches an optional determiner (<code class="docutils literal notranslate"><span class="pre">DT</span></code>) or possessive pronoun (<code class="docutils literal notranslate"><span class="pre">PP</span></code>), zero or more adjectives (<code class="docutils literal notranslate"><span class="pre">JJ</span></code>) then a noun (<code class="docutils literal notranslate"><span class="pre">NN</span></code>) or more nouns (<code class="docutils literal notranslate"><span class="pre">NNS</span></code>). The second rule matches one or more proper nouns (<code class="docutils literal notranslate"><span class="pre">NNP</span></code>). We will use the previous sentence with the already detected parts of speech, and run the chunker on this input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  NP: {&lt;DT|PP\$&gt;?&lt;JJ&gt;*&lt;NN|NNS&gt;}   # chunk determiner/possessive, adjectives and noun or nouns</span>
+<span class="s2">      {&lt;NNS&gt;+}                # chunk sequences of proper nouns</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">chunker</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">RegexpParser</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span> <span class="c1"># chunker</span>
+
+<span class="n">chunks_sentence</span> <span class="o">=</span> <span class="n">chunker</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">pos_tags_sentence</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">chunks_sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S
+  (NP History/NN)
+  is/VBZ
+  full/JJ
+  of/IN
+  (NP people/NNS)
+  who/WP
+  knew/VBD
+  about/IN
+  (NP history/NN)
+  but/CC
+  kept/VBD
+  on/IN
+  repeating/VBG
+  (NP the/DT same/JJ mistakes/NNS)
+  again/RB
+  and/CC
+  again/RB
+  anyway/RB
+  ./.)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also visualize it directly with the help of Jupyter Notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunks_sentence</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2-2-1-text-mining_57_0.png" src="../_images/2-2-1-text-mining_57_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">ne_chunk</span>
+
+<span class="n">ne_chunks_sentence</span> <span class="o">=</span> <span class="n">ne_chunk</span><span class="p">(</span><span class="n">pos_tags_sentence</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ne_chunks_sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S
+  (GPE History/NN)
+  is/VBZ
+  full/JJ
+  of/IN
+  people/NNS
+  who/WP
+  knew/VBD
+  about/IN
+  history/NN
+  but/CC
+  kept/VBD
+  on/IN
+  repeating/VBG
+  the/DT
+  same/JJ
+  mistakes/NNS
+  again/RB
+  and/CC
+  again/RB
+  anyway/RB
+  ./.)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ne_chunks_sentence</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2-2-1-text-mining_59_0.png" src="../_images/2-2-1-text-mining_59_0.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ie_preprocess</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>

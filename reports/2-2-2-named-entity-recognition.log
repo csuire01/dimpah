@@ -17,14 +17,29 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-sentences = sent_tokenize("History is full of people who knew about history. But they kept on repeating the same mistakes again and again anyway.")
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk import pos_tag
+from nltk import ne_chunk
+
+sentences = sent_tokenize(phrase1)
+
+for sentence in sentences:
+    print("Sentence:", sentence)
+    words = word_tokenize(sentence)
+    pos_tags_sentence = pos_tag(words)
+    ne_chunks_sentence = ne_chunk(pos_tags_sentence)
+    print(ne_chunks_sentence)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mLookupError[0m                               Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1748/2722065524.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0msentences[0m [0;34m=[0m [0msent_tokenize[0m[0;34m([0m[0;34m"History is full of people who knew about history. But they kept on repeating the same mistakes again and again anyway."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
+[0;32m/tmp/ipykernel_1777/699824466.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m [0;32mfrom[0m [0mnltk[0m [0;32mimport[0m [0mne_chunk[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[0;32m----> 5[0;31m [0msentences[0m [0;34m=[0m [0msent_tokenize[0m[0;34m([0m[0mphrase1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m [0;32mfor[0m [0msentence[0m [0;32min[0m [0msentences[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
 [0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py[0m in [0;36msent_tokenize[0;34m(text, language)[0m
 [1;32m    103[0m     [0;34m:[0m[0mparam[0m [0mlanguage[0m[0;34m:[0m [0mthe[0m [0mmodel[0m [0mname[0m [0;32min[0m [0mthe[0m [0mPunkt[0m [0mcorpus[0m[0;34m[0m[0;34m[0m[0m
 [1;32m    104[0m     """
