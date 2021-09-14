@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
+    <title>1. Document Understanding and Information Extraction Overview &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction" href="../unit3/3-intro.html" />
-    <link rel="prev" title="Introduction" href="../unit1/1-intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -106,9 +104,9 @@
   Information extraction and document understanding
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-intro.html">
    Introduction
   </a>
  </li>
@@ -246,7 +244,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/unit2/2-intro.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/unit2/2-1-1-information-extraction-overview.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -266,7 +264,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/csuire01/dimpah/issues/new?title=Issue%20on%20page%20%2Funit2/2-intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/csuire01/dimpah/issues/new?title=Issue%20on%20page%20%2Funit2/2-1-1-information-extraction-overview.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -287,7 +285,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/csuire01/dimpah/main?urlpath=tree/dimpah_io4/unit2/2-intro.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/csuire01/dimpah/main?urlpath=tree/dimpah_io4/unit2/2-1-1-information-extraction-overview.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -310,14 +308,16 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-resource">
-   Key resource
+  <a class="reference internal nav-link" href="#information-extraction-history">
+   Information Extraction History
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#technical-documentation">
-   Technical documentation
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#muc-message-understanding-conference-1988-1996">
+     MUC (Message Understanding Conference) 1988 - 1996
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -330,15 +330,46 @@
         
               <div>
                 
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>intro text</p>
-<div class="section" id="key-resource">
-<h2>Key resource<a class="headerlink" href="#key-resource" title="Permalink to this headline">¶</a></h2>
-<p>…</p>
+  <div class="section" id="document-understanding-and-information-extraction-overview">
+<h1>1. Document Understanding and Information Extraction Overview<a class="headerlink" href="#document-understanding-and-information-extraction-overview" title="Permalink to this headline">¶</a></h1>
+<p><strong>Document understanding (DU)</strong> is the ability of system to process documents automatically. It includes technologies that can interpret and extract text and meaning from a wide range of document types including structured, semi-structured and unstructured that can interpret and extract text and meaning from a wide range of document types including structured, semi-structured and unstructured.</p>
+<p>DU models take in documents and segment pages of documents into useful parts (i.e. regions corresponding to a specific table or property), often using optical character recognition (OCR) with some level of document layout analysis. These methods use this information to understand the contents of the document at large, e.g. that this region or bounding box corresponds to an address or a news article.</p>
+<p>Some examples of DU topics are the following research tasks:</p>
+<ul class="simple">
+<li><p><strong>Document Layout Analysis (DLA)</strong> — A computer-vision based document layout analysis module, which partitions each document page into distinct content regions. This model not only delineates between relevant and irrelevant regions, but also serves to categorize the type of content it identifies.</p></li>
+<li><p><strong>Optical Character Recognition (OCR)</strong> — The purpose of this step is to extract text from images or PDF files by faithfully transcribing all written text present in the document.</p></li>
+<li><p><strong>Information extraction (IE)</strong> is the process of converting unstructured text into a structured data base containing selected information from the text. It is an essential step in making the information content of the text usable for further processing. These models generrally use the output of OCR or document layout analysis to comprehend and identify relationships between the information that is being conveyed in the document. Usually specialized to a particular domain and task, these models provide the structure necessary to make a document machine readable, providing utility in document understanding.</p></li>
+<li><p><strong>Document Semantic Enrichment (DSE)</strong> - This process uses the extracted data from the previous step.These annotations are used to enrich the document metadata and to provide new types of visualizations in an information retrieval context.</p></li>
+</ul>
+<div class="section" id="information-extraction-history">
+<h2>Information Extraction History<a class="headerlink" href="#information-extraction-history" title="Permalink to this headline">¶</a></h2>
+<p>Information extraction dates back to the late 1970s in the early days of NLP with the development of a system named JASPER (Journalist’s Assistant for Preparing Earnings Reports) <a class="reference external" href="https://aclanthology.org/A92-1024.pdf">Andersen et al. 1992</a> meant to analyze a live feed of company press releases, and then to identify which of those releases contain information on company earnings and dividends, and for those releases, to extract a predetermined set of information, so that, finally, to provide real-time financial news to financial traders (so the traders will have he  edge in the very competitive real-time financial  news market).</p>
+<p>Most of the text values that JASPER extracted was numbers (net income, per share income, revenues, sales, average number of shares outstanding, etc.) and these values were declared as a <em>template</em> in which each <em>slot</em> should be filled with an extracted value. For each <em>slot</em> in the template, the system (JASPER) tried to match against each sentence an associated set of patterns of words; if any of the patterns matched, a procedure, or extraction method, also associated with the particular slot, was called to decide whether the patterns which matched can be used to assign a value to the slot.</p>
+<p>This type of method was basically a rule-based method, which were particularly common to most of the systems that were first developed for extracting information from unstructured text.</p>
+<p>Once with the appeareance of the <em>web of documents</em> (<a class="reference external" href="https://en.wikipedia.org/wiki/World_Wide_Web_Consortium">Internet</a>, the information explosion of the last decade has placed increasing demands on processing and analyzing large volumes of online data. In response, the Advanced Research Projects Agency (ARPA) has been supporting research to develop a new technology called IE, and, as follows, a series of conferences/campaings starting working towards the definition of the tasks of IE and its evaluation. These started in 1988 as follows:</p>
+<ol class="simple">
+<li><p><strong>MUC</strong> (Message Understanding Conference) begun in 1988 to find a way to evaluate IE, the MUCs established IE as a major application of NLP (<a class="reference external" href="https://aclanthology.org/X93-1003.pdf">Sundheim 1996</a>).</p></li>
+<li><p><strong>ACE</strong> (Automatic Content Extraction) replaced the filling of one complex and task-specific template with a few dozen more general relations and events. Produced lots of annotated training data, fostering development of supervised methods (<a class="reference external" href="https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/lrec2004-ace-program.pdf">Doddington et al. 2004</a>).</p></li>
+<li><p><strong>TAC-KBP</strong> (Text Analysis Conference - Knowledge Base Population) increased the scale of the data to be processed, with the goal of creating a unified data base connecting tens of thousands of entities with about 40 relations and then answering questions about selected entities. These conferences provided minimal annotated training data, thereby encouraging semi-supervised methods (<a class="reference external" href="https://aclanthology.org/P11-1115.pdf">Ji and Grishman 2011</a>).</p></li>
+</ol>
+<div class="section" id="muc-message-understanding-conference-1988-1996">
+<h3>MUC (Message Understanding Conference) 1988 - 1996<a class="headerlink" href="#muc-message-understanding-conference-1988-1996" title="Permalink to this headline">¶</a></h3>
+<p>The first campaign was the Message Understanding Conference (MUC-1) in 1988 and it was organized as more of a meeting to discuss how IE might be evaluated. As previously experimented (JASPER), at this meeting, there was agreement on the need for a shared template capturing the most important information in a document. First two campaings, MUC-1 and MUC-2, invited participants to submit filled templates extracted from Navy exercise message traffic texts. MUC-3 finally agreed on scoring using recall, precision, and F measure (F measure, the harmonic mean of recall and precision, was suggested as the primary metric for assigning a rank to participating systems.)</p>
+<p>MUC-3 used news about terrorism in Latin America, and they provided an annotated corpora with texts and filled templates for the evaluation:
+<img alt="MUC-3 article example" src="../_images/MUC_text.png" />
+The documents were all uppercase as in the image above.
+<img alt="MUC-3 template example" src="../_images/MUC_template.png" /></p>
+<p>MUC-3 proposed the extraction of different text excepts to fill several types of templates (bombings, arsons, kidnappings, killings, attacks, etc.). The “/” separates alternative correct slot fills. The templates were substantially more complex than in prior years. The participants were required to develop a complete system to fill these templates, that were further refferred as <em>event templates</em>. The template to fill consisted in: the detection of the date of the event (<em>03 APR 90)</em>, the location (<em>COLOMBIA: MEDELLIN</em>), the type of the event (<em>kidnapping</em>) … the perpetrator (<em>THREE HEAVILY ARMED MEN</em>), the human target (<em>FEDERICO ESTRADA VELEZ</em>), etc. The participating systems should have been able to fill all the slots.</p>
+<p>Next, because the results were rather low, the other campaings (.. MUC-5, MUC-6) started to require several component subsystems. For example, MUC-6 split off different tasks, with separate evaluations:</p>
+<ul class="simple">
+<li><p>Named Entity Recognition (NER)</p></li>
+<li><p>Relation Extraction (RE)</p></li>
+<li><p>Event Extraction (EE)</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p>Further, these newly defined more general independent tasks drew greater attention, because they were more
+feasible to plug and play: a system can detect the perpetrators, the human targets, the location and the date; another system can detect the type of the event, etc.</p>
 </div>
-<div class="section" id="technical-documentation">
-<h2>Technical documentation<a class="headerlink" href="#technical-documentation" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -371,24 +402,6 @@
 
 <div class='prev-next-bottom'>
     
-    <div id="prev">
-        <a class="left-prev" href="../unit1/1-intro.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Introduction</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="../unit3/3-intro.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Introduction</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
 
 </div>
         

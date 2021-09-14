@@ -1,0 +1,141 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 1117, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/util.py", line 78, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/util.py", line 57, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 558, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from nltk.corpus import stopwords
+stop_words = set(stopwords.words('english'))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mLookupError[0m                               Traceback (most recent call last)
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py[0m in [0;36m__load[0;34m(self)[0m
+[1;32m     82[0m                 [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 83[0;31m                     [0mroot[0m [0;34m=[0m [0mnltk[0m[0;34m.[0m[0mdata[0m[0;34m.[0m[0mfind[0m[0;34m([0m[0;34m"{}/{}"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mself[0m[0;34m.[0m[0msubdir[0m[0;34m,[0m [0mzip_name[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     84[0m                 [0;32mexcept[0m [0mLookupError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36mfind[0;34m(resource_name, paths)[0m
+[1;32m    582[0m     [0mresource_not_found[0m [0;34m=[0m [0;34m"\n%s\n%s\n%s\n"[0m [0;34m%[0m [0;34m([0m[0msep[0m[0;34m,[0m [0mmsg[0m[0;34m,[0m [0msep[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 583[0;31m     [0;32mraise[0m [0mLookupError[0m[0;34m([0m[0mresource_not_found[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    584[0m [0;34m[0m[0m
+
+[0;31mLookupError[0m: 
+**********************************************************************
+  Resource [93mstopwords[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('stopwords')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/stopwords.zip/stopwords/[0m
+
+  Searched in:
+    - '/home/runner/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data'
+    - '/usr/share/nltk_data'
+    - '/usr/local/share/nltk_data'
+    - '/usr/lib/nltk_data'
+    - '/usr/local/lib/nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+[0;31mLookupError[0m                               Traceback (most recent call last)
+[0;32m/tmp/ipykernel_1649/524749441.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mcorpus[0m [0;32mimport[0m [0mstopwords[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mstop_words[0m [0;34m=[0m [0mset[0m[0;34m([0m[0mstopwords[0m[0;34m.[0m[0mwords[0m[0;34m([0m[0;34m'english'[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py[0m in [0;36m__getattr__[0;34m(self, attr)[0m
+[1;32m    118[0m             [0;32mraise[0m [0mAttributeError[0m[0;34m([0m[0;34m"LazyCorpusLoader object has no attribute '__bases__'"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    119[0m [0;34m[0m[0m
+[0;32m--> 120[0;31m         [0mself[0m[0;34m.[0m[0m__load[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    121[0m         [0;31m# This looks circular, but its not, since __load() changes our[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    122[0m         [0;31m# __class__ to something new:[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py[0m in [0;36m__load[0;34m(self)[0m
+[1;32m     83[0m                     [0mroot[0m [0;34m=[0m [0mnltk[0m[0;34m.[0m[0mdata[0m[0;34m.[0m[0mfind[0m[0;34m([0m[0;34m"{}/{}"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mself[0m[0;34m.[0m[0msubdir[0m[0;34m,[0m [0mzip_name[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     84[0m                 [0;32mexcept[0m [0mLookupError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 85[0;31m                     [0;32mraise[0m [0me[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     86[0m [0;34m[0m[0m
+[1;32m     87[0m         [0;31m# Load the corpus.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/corpus/util.py[0m in [0;36m__load[0;34m(self)[0m
+[1;32m     78[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     79[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 80[0;31m                 [0mroot[0m [0;34m=[0m [0mnltk[0m[0;34m.[0m[0mdata[0m[0;34m.[0m[0mfind[0m[0;34m([0m[0;34m"{}/{}"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mself[0m[0;34m.[0m[0msubdir[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m__name[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     81[0m             [0;32mexcept[0m [0mLookupError[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     82[0m                 [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36mfind[0;34m(resource_name, paths)[0m
+[1;32m    581[0m     [0msep[0m [0;34m=[0m [0;34m"*"[0m [0;34m*[0m [0;36m70[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    582[0m     [0mresource_not_found[0m [0;34m=[0m [0;34m"\n%s\n%s\n%s\n"[0m [0;34m%[0m [0;34m([0m[0msep[0m[0;34m,[0m [0mmsg[0m[0;34m,[0m [0msep[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 583[0;31m     [0;32mraise[0m [0mLookupError[0m[0;34m([0m[0mresource_not_found[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    584[0m [0;34m[0m[0m
+[1;32m    585[0m [0;34m[0m[0m
+
+[0;31mLookupError[0m: 
+**********************************************************************
+  Resource [93mstopwords[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('stopwords')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/stopwords[0m
+
+  Searched in:
+    - '/home/runner/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data'
+    - '/usr/share/nltk_data'
+    - '/usr/local/share/nltk_data'
+    - '/usr/lib/nltk_data'
+    - '/usr/local/lib/nltk_data'
+**********************************************************************
+
+LookupError: 
+**********************************************************************
+  Resource [93mstopwords[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('stopwords')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/stopwords[0m
+
+  Searched in:
+    - '/home/runner/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data'
+    - '/usr/share/nltk_data'
+    - '/usr/local/share/nltk_data'
+    - '/usr/lib/nltk_data'
+    - '/usr/local/lib/nltk_data'
+**********************************************************************
+
+
