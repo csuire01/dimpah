@@ -12,6 +12,10 @@ parts:
   - caption: Information extraction and document understanding
     chapters: 
     - file: unit2/2-intro
+    - file: unit2/2-1-1-information-extraction-overview
+    - file: unit2/2-2-1-text-mining
+    - file: unit2/2-2-2-named-entity-recognition
+    - file: unit2/2-3-1-benefits-and-methods-of-semantic-enrichment
   # Unit 3
   - caption: Document retrieval and information seeking
     chapters:
