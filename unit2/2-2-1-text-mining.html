@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>(b) Text Pre-processing &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
+    <title>Text Mining &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -51,6 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Named Entity Recognition (NER)" href="2-2-2-named-entity-recognition.html" />
+    <link rel="prev" title="Document Understanding and Information Extraction Overview" href="2-1-1-information-extraction-overview.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -68,6 +70,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/logo.png" class="logo" alt="logo">
       
@@ -104,10 +110,30 @@
   Information extraction and document understanding
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="2-intro.html">
    Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-1-1-information-extraction-overview.html">
+   Document Understanding and Information Extraction Overview
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Text Mining
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-2-2-named-entity-recognition.html">
+   Named Entity Recognition (NER)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-3-1-benefits-and-methods-of-semantic-enrichment.html">
+   Document Semantic Enrichment (DSE)
   </a>
  </li>
 </ul>
@@ -307,42 +333,42 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#b-text-pre-processing">
    (b) Text Pre-processing
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#i-programming-basics">
    i. Programming Basics
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regex-basics">
    RegEx Basics
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ii-natural-language-processing-nlp-programming-basics">
    ii. Natural Language Processing (NLP) Programming Basics
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iii-stopwords">
    iii. Stopwords
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iv-collocations-and-n-grams">
    iv. Collocations and n-grams
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#v-part-of-speech-pos-tagging">
    v. Part-of-speech (PoS) tagging
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vi-chunking">
    vi. Chunking
   </a>
@@ -358,7 +384,9 @@
         
               <div>
                 
-  <p>Text mining
+  <div class="section" id="text-mining">
+<h1>Text Mining<a class="headerlink" href="#text-mining" title="Permalink to this headline">¶</a></h1>
+<p>Text mining
 Prerequisite: Technicalities
 Wikidata API, other APIs
 Scraping HTML to extract structured/semi-structured information</p>
@@ -368,7 +396,7 @@ PoS tagging
 N-grams, co-occurrences and concordancer
 Word embeddings (word2vec, BERT, etc)</p>
 <div class="section" id="b-text-pre-processing">
-<h1>(b) Text Pre-processing<a class="headerlink" href="#b-text-pre-processing" title="Permalink to this headline">¶</a></h1>
+<h2>(b) Text Pre-processing<a class="headerlink" href="#b-text-pre-processing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Rule-based Techniques (regex, etc)</p></li>
 <li><p>Part-of-Speech (PoS) tagging</p></li>
@@ -378,7 +406,7 @@ Word embeddings (word2vec, BERT, etc)</p>
 </ul>
 </div>
 <div class="section" id="i-programming-basics">
-<h1>i. Programming Basics<a class="headerlink" href="#i-programming-basics" title="Permalink to this headline">¶</a></h1>
+<h2>i. Programming Basics<a class="headerlink" href="#i-programming-basics" title="Permalink to this headline">¶</a></h2>
 <p>A <strong>text</strong> as nothing more than a sequence of <strong>words</strong> and <strong>punctuation</strong>. In the following example, <code class="docutils literal notranslate"><span class="pre">sentence</span></code> followed by the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign, and then some quoted words, separated with commas, surrounded with brackets is known as a list in Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -518,7 +546,7 @@ Word embeddings (word2vec, BERT, etc)</p>
 </div>
 </div>
 <div class="section" id="regex-basics">
-<h1>RegEx Basics<a class="headerlink" href="#regex-basics" title="Permalink to this headline">¶</a></h1>
+<h2>RegEx Basics<a class="headerlink" href="#regex-basics" title="Permalink to this headline">¶</a></h2>
 <p>Regular expressions or RegEx is a sequence of characters mainly used to find or replace patterns embedded in the text.</p>
 <ul class="simple">
 <li><p>\b returns a match where the specified pattern is at the beginning or at the end of a word.</p></li>
@@ -592,7 +620,7 @@ Word embeddings (word2vec, BERT, etc)</p>
 </div>
 </div>
 <div class="section" id="ii-natural-language-processing-nlp-programming-basics">
-<h1>ii. Natural Language Processing (NLP) Programming Basics<a class="headerlink" href="#ii-natural-language-processing-nlp-programming-basics" title="Permalink to this headline">¶</a></h1>
+<h2>ii. Natural Language Processing (NLP) Programming Basics<a class="headerlink" href="#ii-natural-language-processing-nlp-programming-basics" title="Permalink to this headline">¶</a></h2>
 <p>For a deeper introduction into NLP programming techniques, we continue with the usage of NLTK. <a class="reference external" href="https://www.nltk.org/">NLTK</a> is a widely used standard Natural Language Processing (NLP) and Computational Linguistics (CL) Python library with prebuilt functions and utilities for the ease of use and implementation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -601,8 +629,8 @@ Word embeddings (word2vec, BERT, etc)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nltk in /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages (3.4.5)
-Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages (from nltk) (1.16.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nltk in /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages (3.4.5)
+Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages (from nltk) (1.16.0)
 </pre></div>
 </div>
 </div>
@@ -626,31 +654,31 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1662</span><span class="o">/</span><span class="mf">2722065524.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1675</span><span class="o">/</span><span class="mf">2722065524.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="s2">&quot;History is full of people who knew about history. But they kept on repeating the same mistakes again and again anyway.&quot;</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
 <span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
 <span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="s2">&quot;&quot;&quot;</span>
 <span class="ne">--&gt; </span><span class="mi">105</span><span class="s2">     tokenizer = load(&#39;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&#39;.format(language))</span>
 <span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2">     return tokenizer.tokenize(text)</span>
 <span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
 <span class="g g-Whitespace">    </span><span class="mi">866</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">867</span><span class="s2">     # Load the resource.</span>
 <span class="ne">--&gt; </span><span class="mi">868</span><span class="s2">     opened_resource = _open(resource_url)</span>
 <span class="g g-Whitespace">    </span><span class="mi">869</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">870</span><span class="s2">     if format == &#39;raw&#39;:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
 <span class="g g-Whitespace">    </span><span class="mi">991</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">992</span><span class="s2">     if protocol is None or protocol.lower() == &#39;nltk&#39;:</span>
 <span class="ne">--&gt; </span><span class="mi">993</span><span class="s2">         return find(path_, path + [&#39;&#39;]).open()</span>
 <span class="g g-Whitespace">    </span><span class="mi">994</span><span class="s2">     elif protocol.lower() == &#39;file&#39;:</span>
 <span class="g g-Whitespace">    </span><span class="mi">995</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
 <span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">     sep = &#39;*&#39; * 70</span>
 <span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">     resource_not_found = &#39;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#39; % (sep, msg, sep)</span>
 <span class="ne">--&gt; </span><span class="mi">701</span><span class="s2">     raise LookupError(resource_not_found)</span>
@@ -671,9 +699,9 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 
 <span class="s2">  Searched in:</span>
 <span class="s2">    - &#39;/home/runner/nltk_data&#39;</span>
-<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data&#39;</span>
-<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data&#39;</span>
-<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.12/x64/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.12/x64/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.12/x64/lib/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
@@ -749,7 +777,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 </div>
 </div>
 <div class="section" id="iii-stopwords">
-<h1>iii. Stopwords<a class="headerlink" href="#iii-stopwords" title="Permalink to this headline">¶</a></h1>
+<h2>iii. Stopwords<a class="headerlink" href="#iii-stopwords" title="Permalink to this headline">¶</a></h2>
 <p>When working with text mining applications, we often use the term <em>stopwords</em>. Stopwords are basically a set of commonly used words in any language (not just English). The reason why stopwords are critical to many applications is that, if we remove the words that are very commonly used in a given language, we can focus on the <em>important</em> words instead.</p>
 <p>For example, in the context of a search engine, let’s consider that your search is <em>how to develop text mining applications?</em></p>
 <p>If the search engine tries to find web pages that contained the terms <em>how</em>, <em>to</em>, <em>develop</em>, <em>text</em>, <em>mining</em>, <em>applications</em>, the search engine will find a lot more pages that contain the terms <em>how</em> and <em>to</em> than pages that contain information about developing text mining applications because the terms <em>how</em> and <em>to</em> are very commonly used in the English language.</p>
@@ -815,7 +843,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 <p>When we first invoke <a class="reference external" href="http://www.nltk.org/api/nltk.html?highlight=freqdist">FreqDist</a>, we pass the name of the text as an argument. The expression <code class="docutils literal notranslate"><span class="pre">most_common(10</span></code>) gives us a list of the 10 most frequently occurring types in the text (in this case, it will print all the words in the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> since the length of the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> is less than 10).</p>
 </div>
 <div class="section" id="iv-collocations-and-n-grams">
-<h1>iv. Collocations and n-grams<a class="headerlink" href="#iv-collocations-and-n-grams" title="Permalink to this headline">¶</a></h1>
+<h2>iv. Collocations and n-grams<a class="headerlink" href="#iv-collocations-and-n-grams" title="Permalink to this headline">¶</a></h2>
 <p>A <em>collocation</em> is a sequence of words that occur together unusually often. To understand collocations, we start by extracting from the <code class="docutils literal notranslate"><span class="pre">sentence</span></code> a list of word pairs, also known as bigrams. The <em>bigrams</em> are lists of two words (<em>bi</em>), while n-grams are lists of <em>n</em> words (e.g. ..). This is easily accomplished with the function <code class="docutils literal notranslate"><span class="pre">bigrams()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -835,7 +863,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 </div>
 </div>
 <div class="section" id="v-part-of-speech-pos-tagging">
-<h1>v. Part-of-speech (PoS) tagging<a class="headerlink" href="#v-part-of-speech-pos-tagging" title="Permalink to this headline">¶</a></h1>
+<h2>v. Part-of-speech (PoS) tagging<a class="headerlink" href="#v-part-of-speech-pos-tagging" title="Permalink to this headline">¶</a></h2>
 <p>The part of speech explains how a word is used in a sentence. There are eight main parts of speech - nouns, pronouns, adjectives, verbs, adverbs, prepositions, conjunctions and interjections.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Noun (N)- Daniel, London, table, dog, teacher, pen, city, happiness, hope
 - Verb (V)- go, speak, run, eat, play, live, walk, have, like, are, is
@@ -911,7 +939,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 </div>
 </div>
 <div class="section" id="vi-chunking">
-<h1>vi. Chunking<a class="headerlink" href="#vi-chunking" title="Permalink to this headline">¶</a></h1>
+<h2>vi. Chunking<a class="headerlink" href="#vi-chunking" title="Permalink to this headline">¶</a></h2>
 <p>Chunking segments texts and depends on PoS tagging. Like tokenization, which omits whitespace, chunking usually selects a subset of the tokens. Instead of just simple tokens which may not represent the actual meaning of the text, its advisable to use phrases such as <em>South Africa</em> as a single word instead of <em>South</em> and <em>Africa</em> separate words. Also like tokenization, the pieces produced by a chunker do not overlap in the source text. To find the chunk structure for a given sentence, the <code class="docutils literal notranslate"><span class="pre">RegexpParser</span></code> chunker begins with a flat structure in which no tokens are chunked. The chunking rules are applied in turn, successively updating the chunk structure. Once all of the rules have been invoked, the resulting chunk structure is returned.</p>
 <p>The next example shows a simple chunk grammar consisting of two rules. The first rule matches an optional determiner (<code class="docutils literal notranslate"><span class="pre">DT</span></code>) or possessive pronoun (<code class="docutils literal notranslate"><span class="pre">PP</span></code>), zero or more adjectives (<code class="docutils literal notranslate"><span class="pre">JJ</span></code>) then a noun (<code class="docutils literal notranslate"><span class="pre">NN</span></code>) or more nouns (<code class="docutils literal notranslate"><span class="pre">NNS</span></code>). The second rule matches one or more proper nouns (<code class="docutils literal notranslate"><span class="pre">NNP</span></code>). We will use the previous sentence with the already detected parts of speech, and run the chunker on this input.</p>
 <div class="cell docutils container">
@@ -963,7 +991,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2-2-1-text-mining_68_0.png" src="../_images/2-2-1-text-mining_68_0.png" />
+<img alt="../_images/2-2-1-text-mining_69_0.png" src="../_images/2-2-1-text-mining_69_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1010,7 +1038,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2-2-1-text-mining_70_0.png" src="../_images/2-2-1-text-mining_70_0.png" />
+<img alt="../_images/2-2-1-text-mining_71_0.png" src="../_images/2-2-1-text-mining_71_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1020,6 +1048,7 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
     <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span>
     <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1054,12 +1083,30 @@ Tokenization is the task of splitting the text (which otherwise is just a long s
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="2-1-1-information-extraction-overview.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Document Understanding and Information Extraction Overview</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2-2-2-named-entity-recognition.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Named Entity Recognition (NER)</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
 </div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

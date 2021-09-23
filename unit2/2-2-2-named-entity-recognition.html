@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Named Entity Recognition (NER) &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
+    <title>Named Entity Recognition (NER) &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -51,6 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Document Semantic Enrichment (DSE)" href="2-3-1-benefits-and-methods-of-semantic-enrichment.html" />
+    <link rel="prev" title="Text Mining" href="2-2-1-text-mining.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -68,6 +70,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/logo.png" class="logo" alt="logo">
       
@@ -104,10 +110,30 @@
   Information extraction and document understanding
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="2-intro.html">
    Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-1-1-information-extraction-overview.html">
+   Document Understanding and Information Extraction Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-2-1-text-mining.html">
+   Text Mining
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Named Entity Recognition (NER)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-3-1-benefits-and-methods-of-semantic-enrichment.html">
+   Document Semantic Enrichment (DSE)
   </a>
  </li>
 </ul>
@@ -427,7 +453,7 @@
               <div>
                 
   <div class="section" id="named-entity-recognition-ner">
-<h1>1. Named Entity Recognition (NER)<a class="headerlink" href="#named-entity-recognition-ner" title="Permalink to this headline">¶</a></h1>
+<h1>Named Entity Recognition (NER)<a class="headerlink" href="#named-entity-recognition-ner" title="Permalink to this headline">¶</a></h1>
 <p>Named entity recognition (NER) task aims at identifying real-world entities, such as names of people, organizations, and locations within historical documents. The term of <em>named entity (NE)</em>, widely used in Information Extraction (IE) or other Natural Language Processing (NLP) applications, was born in the Message Understanding Conferences (MUC) which influenced the IE research between 1988 and 1996. Since 1999, the yearly conference on
 Natural Language Learning (CoNLL) covers a large framework of topics about NLP, mostly through machine learning approaches.</p>
 <div class="section" id="a-what-are-named-entities">
@@ -556,35 +582,35 @@ enamex since the MUC-6 competition (<a class="reference external" href="https://
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1693</span><span class="o">/</span><span class="mf">699824466.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1706</span><span class="o">/</span><span class="mf">699824466.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">ne_chunk</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> 
 <span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">phrase1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> 
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
 <span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
 <span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="s2">&quot;&quot;&quot;</span>
 <span class="ne">--&gt; </span><span class="mi">105</span><span class="s2">     tokenizer = load(&#39;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&#39;.format(language))</span>
 <span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2">     return tokenizer.tokenize(text)</span>
 <span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
 <span class="g g-Whitespace">    </span><span class="mi">866</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">867</span><span class="s2">     # Load the resource.</span>
 <span class="ne">--&gt; </span><span class="mi">868</span><span class="s2">     opened_resource = _open(resource_url)</span>
 <span class="g g-Whitespace">    </span><span class="mi">869</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">870</span><span class="s2">     if format == &#39;raw&#39;:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
 <span class="g g-Whitespace">    </span><span class="mi">991</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">992</span><span class="s2">     if protocol is None or protocol.lower() == &#39;nltk&#39;:</span>
 <span class="ne">--&gt; </span><span class="mi">993</span><span class="s2">         return find(path_, path + [&#39;&#39;]).open()</span>
 <span class="g g-Whitespace">    </span><span class="mi">994</span><span class="s2">     elif protocol.lower() == &#39;file&#39;:</span>
 <span class="g g-Whitespace">    </span><span class="mi">995</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
 <span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">     sep = &#39;*&#39; * 70</span>
 <span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">     resource_not_found = &#39;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#39; % (sep, msg, sep)</span>
 <span class="ne">--&gt; </span><span class="mi">701</span><span class="s2">     raise LookupError(resource_not_found)</span>
@@ -605,9 +631,9 @@ enamex since the MUC-6 competition (<a class="reference external" href="https://
 
 <span class="s2">  Searched in:</span>
 <span class="s2">    - &#39;/home/runner/nltk_data&#39;</span>
-<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data&#39;</span>
-<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data&#39;</span>
-<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.12/x64/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.12/x64/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/opt/hostedtoolcache/Python/3.8.12/x64/lib/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
@@ -2239,12 +2265,30 @@ Brazil -10.3333333 -53.2
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="2-2-1-text-mining.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Text Mining</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2-3-1-benefits-and-methods-of-semantic-enrichment.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Document Semantic Enrichment (DSE)</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
 </div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

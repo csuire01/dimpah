@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -71,6 +71,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
@@ -110,6 +114,26 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../unit2/2-intro.html">
    Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/2-1-1-information-extraction-overview.html">
+   Document Understanding and Information Extraction Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/2-2-1-text-mining.html">
+   Text Mining
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/2-2-2-named-entity-recognition.html">
+   Named Entity Recognition (NER)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/2-3-1-benefits-and-methods-of-semantic-enrichment.html">
+   Document Semantic Enrichment (DSE)
   </a>
  </li>
 </ul>
@@ -483,27 +507,27 @@ Solr will then process the query and will return a list of resulting documents, 
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8a5e0e95201b4694a5cb87115af8afa5"}
+{"version_major": 2, "version_minor": 0, "model_id": "424728191c494a40afcb20616f144a61"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "07bae54c484649079310da6296428460"}
+{"version_major": 2, "version_minor": 0, "model_id": "30b8165a560e42f69436491555a63c06"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "668d807d3e6e44b9b34eaa7531162fe3"}
+{"version_major": 2, "version_minor": 0, "model_id": "aec6ade96a474fe585bf0d888df3be97"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "08355ea839eb408da55b11ddb8c52943"}
+{"version_major": 2, "version_minor": 0, "model_id": "dde388dc3ce1485eb2f2aa4db022a516"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b2e006a057004920b6ac80d8ee9c99eb"}
+{"version_major": 2, "version_minor": 0, "model_id": "be379b32d40f45c38b0e96d9929cd491"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "cf7ff50f37d649ee916eea520e63eb59"}
+{"version_major": 2, "version_minor": 0, "model_id": "af0667954cde442e99bb5628bec33e9a"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ef446336b39545c6994f0cc2d7d680bd"}
+{"version_major": 2, "version_minor": 0, "model_id": "c54db8c3cdbd4aee98c40143c0bae1f1"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ded54707b3f640e9a0ff5d3d898f006f"}
+{"version_major": 2, "version_minor": 0, "model_id": "67479989533b46f38258d4e31d9153bf"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "fc53bd1cef194e52b8e08b1e3aefed1f"}
+{"version_major": 2, "version_minor": 0, "model_id": "44679aec67ce4d048784d3a7a4f8ab6d"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "397cc8f8a72541f08f60d85b8ebdef42"}
+{"version_major": 2, "version_minor": 0, "model_id": "3934371c5fcb4951bb2e4af0d7453e87"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "d501c35ecbcd45b684561b21dca4950b"}
+{"version_major": 2, "version_minor": 0, "model_id": "4e0d3816422948619980ce44ebcd2eae"}
 </script></div>
 </div>
 <div class="cell docutils container">
@@ -515,7 +539,7 @@ Solr will then process the query and will return a list of resulting documents, 
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1841</span><span class="o">/</span><span class="mf">1137126567.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1856</span><span class="o">/</span><span class="mf">1137126567.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
 <span class="ne">NameError</span>: name &#39;response&#39; is not defined
@@ -642,7 +666,7 @@ More advance parameters can be used to further refine how the similarity is comp
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

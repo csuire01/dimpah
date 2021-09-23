@@ -1,19 +1,19 @@
 Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 1117, in execute
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 1117, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/util.py", line 78, in wrapped
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 78, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/util.py", line 57, in just_run
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 57, in just_run
     return loop.run_until_complete(coro)
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 558, in async_execute
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 558, in async_execute
     await self.async_execute_cell(
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in async_execute_cell
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in async_execute_cell
     self._check_raise_for_error(cell, exec_reply)
-  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -33,35 +33,35 @@ for sentence in sentences:
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mLookupError[0m                               Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1693/699824466.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1706/699824466.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      3[0m [0;32mfrom[0m [0mnltk[0m [0;32mimport[0m [0mne_chunk[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      4[0m [0;34m[0m[0m
 [0;32m----> 5[0;31m [0msentences[0m [0;34m=[0m [0msent_tokenize[0m[0;34m([0m[0mphrase1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      6[0m [0;34m[0m[0m
 [1;32m      7[0m [0;32mfor[0m [0msentence[0m [0;32min[0m [0msentences[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py[0m in [0;36msent_tokenize[0;34m(text, language)[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py[0m in [0;36msent_tokenize[0;34m(text, language)[0m
 [1;32m    103[0m     [0;34m:[0m[0mparam[0m [0mlanguage[0m[0;34m:[0m [0mthe[0m [0mmodel[0m [0mname[0m [0;32min[0m [0mthe[0m [0mPunkt[0m [0mcorpus[0m[0;34m[0m[0;34m[0m[0m
 [1;32m    104[0m     """
 [0;32m--> 105[0;31m     [0mtokenizer[0m [0;34m=[0m [0mload[0m[0;34m([0m[0;34m'tokenizers/punkt/{0}.pickle'[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mlanguage[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m    106[0m     [0;32mreturn[0m [0mtokenizer[0m[0;34m.[0m[0mtokenize[0m[0;34m([0m[0mtext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m    107[0m [0;34m[0m[0m
 
-[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36mload[0;34m(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36mload[0;34m(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)[0m
 [1;32m    866[0m [0;34m[0m[0m
 [1;32m    867[0m     [0;31m# Load the resource.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
 [0;32m--> 868[0;31m     [0mopened_resource[0m [0;34m=[0m [0m_open[0m[0;34m([0m[0mresource_url[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m    869[0m [0;34m[0m[0m
 [1;32m    870[0m     [0;32mif[0m [0mformat[0m [0;34m==[0m [0;34m'raw'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36m_open[0;34m(resource_url)[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36m_open[0;34m(resource_url)[0m
 [1;32m    991[0m [0;34m[0m[0m
 [1;32m    992[0m     [0;32mif[0m [0mprotocol[0m [0;32mis[0m [0;32mNone[0m [0;32mor[0m [0mprotocol[0m[0;34m.[0m[0mlower[0m[0;34m([0m[0;34m)[0m [0;34m==[0m [0;34m'nltk'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0;32m--> 993[0;31m         [0;32mreturn[0m [0mfind[0m[0;34m([0m[0mpath_[0m[0;34m,[0m [0mpath[0m [0;34m+[0m [0;34m[[0m[0;34m''[0m[0;34m][0m[0;34m)[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m    994[0m     [0;32melif[0m [0mprotocol[0m[0;34m.[0m[0mlower[0m[0;34m([0m[0;34m)[0m [0;34m==[0m [0;34m'file'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [1;32m    995[0m         [0;31m# urllib might not use mode='rb', so handle this one ourselves:[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36mfind[0;34m(resource_name, paths)[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py[0m in [0;36mfind[0;34m(resource_name, paths)[0m
 [1;32m    699[0m     [0msep[0m [0;34m=[0m [0;34m'*'[0m [0;34m*[0m [0;36m70[0m[0;34m[0m[0;34m[0m[0m
 [1;32m    700[0m     [0mresource_not_found[0m [0;34m=[0m [0;34m'\n%s\n%s\n%s\n'[0m [0;34m%[0m [0;34m([0m[0msep[0m[0;34m,[0m [0mmsg[0m[0;34m,[0m [0msep[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0;32m--> 701[0;31m     [0;32mraise[0m [0mLookupError[0m[0;34m([0m[0mresource_not_found[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
@@ -82,9 +82,9 @@ for sentence in sentences:
 
   Searched in:
     - '/home/runner/nltk_data'
-    - '/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data'
-    - '/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data'
-    - '/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.12/x64/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.12/x64/share/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.12/x64/lib/nltk_data'
     - '/usr/share/nltk_data'
     - '/usr/local/share/nltk_data'
     - '/usr/lib/nltk_data'
@@ -106,9 +106,9 @@ LookupError:
 
   Searched in:
     - '/home/runner/nltk_data'
-    - '/opt/hostedtoolcache/Python/3.8.11/x64/nltk_data'
-    - '/opt/hostedtoolcache/Python/3.8.11/x64/share/nltk_data'
-    - '/opt/hostedtoolcache/Python/3.8.11/x64/lib/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.12/x64/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.12/x64/share/nltk_data'
+    - '/opt/hostedtoolcache/Python/3.8.12/x64/lib/nltk_data'
     - '/usr/share/nltk_data'
     - '/usr/local/share/nltk_data'
     - '/usr/lib/nltk_data'
