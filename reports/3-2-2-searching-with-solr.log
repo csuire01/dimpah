@@ -22,7 +22,7 @@ RenderJSON(response)
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1856/1137126567.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1900/1137126567.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mRenderJSON[0m[0;34m([0m[0mresponse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;31mNameError[0m: name 'response' is not defined

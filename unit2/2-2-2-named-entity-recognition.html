@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -564,6 +564,36 @@ enamex since the MUC-6 competition (<a class="reference external" href="https://
 <h2>i. NER with <a class="reference external" href="https://www.nltk.org/">NLTK</a><a class="headerlink" href="#i-ner-with-nltk" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install nltk
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nltk in /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages (3.4.5)
+Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages (from nltk) (1.16.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python -m nltk.downloader punkt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/runpy.py:127: RuntimeWarning: &#39;nltk.downloader&#39; found in sys.modules after import of package &#39;nltk&#39;, but prior to execution of &#39;nltk.downloader&#39;; this may result in unpredictable behaviour
+  warn(RuntimeWarning(msg))
+[nltk_data] Downloading package punkt to /home/runner/nltk_data...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Package punkt is already up-to-date!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">sent_tokenize</span><span class="p">,</span> <span class="n">word_tokenize</span>
 <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">pos_tag</span>
 <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">ne_chunk</span>
@@ -580,35 +610,38 @@ enamex since the MUC-6 competition (<a class="reference external" href="https://
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sentence: In 1979, after more than a century of vaccination campaigns around the planet, the World Health Organization certified that smallpox had been eradicated
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1706</span><span class="o">/</span><span class="mf">699824466.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">ne_chunk</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">phrase1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1736</span><span class="o">/</span><span class="mf">699824466.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sentence:&quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">10</span>     <span class="n">pos_tags_sentence</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">ne_chunks_sentence</span> <span class="o">=</span> <span class="n">ne_chunk</span><span class="p">(</span><span class="n">pos_tags_sentence</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="nb">print</span><span class="p">(</span><span class="n">ne_chunks_sentence</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">105</span><span class="s2">     tokenizer = load(&#39;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&#39;.format(language))</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2">     return tokenizer.tokenize(text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/tag/__init__.py</span> in <span class="ni">pos_tag</span><span class="nt">(tokens, tagset, lang)</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span>     <span class="p">:</span><span class="n">rtype</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">161</span><span class="s2">     tagger = _get_tagger(lang)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span><span class="s2">     return _pos_tag(tokens, tagset, tagger, lang)</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span><span class="s2"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span><span class="s2">     # Load the resource.</span>
-<span class="ne">--&gt; </span><span class="mi">868</span><span class="s2">     opened_resource = _open(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span><span class="s2">     if format == &#39;raw&#39;:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/tag/__init__.py</span> in <span class="ni">_get_tagger</span><span class="nt">(lang)</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span><span class="s2">         tagger.load(ap_russian_model_loc)</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2">     else:</span>
+<span class="ne">--&gt; </span><span class="mi">107</span><span class="s2">         tagger = PerceptronTagger()</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2">     return tagger</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span><span class="s2"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">991</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">992</span><span class="s2">     if protocol is None or protocol.lower() == &#39;nltk&#39;:</span>
-<span class="ne">--&gt; </span><span class="mi">993</span><span class="s2">         return find(path_, path + [&#39;&#39;]).open()</span>
-<span class="g g-Whitespace">    </span><span class="mi">994</span><span class="s2">     elif protocol.lower() == &#39;file&#39;:</span>
-<span class="g g-Whitespace">    </span><span class="mi">995</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/tag/perceptron.py</span> in <span class="ni">__init__</span><span class="nt">(self, load)</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span><span class="s2">         if load:</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span><span class="s2">             AP_MODEL_LOC = &#39;file:&#39; + str(</span>
+<span class="ne">--&gt; </span><span class="mi">162</span><span class="s2">                 find(&#39;taggers/averaged_perceptron_tagger/&#39; + PICKLE)</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span><span class="s2">             )</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span><span class="s2">             self.load(AP_MODEL_LOC)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
 <span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">     sep = &#39;*&#39; * 70</span>
@@ -619,15 +652,15 @@ enamex since the MUC-6 competition (<a class="reference external" href="https://
 
 <span class="ne">LookupError</span>: 
 <span class="s2">**********************************************************************</span>
-<span class="s2">  Resource punkt not found.</span>
+<span class="s2">  Resource averaged_perceptron_tagger not found.</span>
 <span class="s2">  Please use the NLTK Downloader to obtain the resource:</span>
 
 <span class="s2">  &gt;&gt;&gt; import nltk</span>
-<span class="s2">  &gt;&gt;&gt; nltk.download(&#39;punkt&#39;)</span>
+<span class="s2">  &gt;&gt;&gt; nltk.download(&#39;averaged_perceptron_tagger&#39;)</span>
 <span class="s2">  </span>
 <span class="s2">  For more information see: https://www.nltk.org/data.html</span>
 
-<span class="s2">  Attempted to load tokenizers/punkt/PY3/english.pickle</span>
+<span class="s2">  Attempted to load taggers/averaged_perceptron_tagger/averaged_perceptron_tagger.pickle</span>
 
 <span class="s2">  Searched in:</span>
 <span class="s2">    - &#39;/home/runner/nltk_data&#39;</span>
@@ -638,7 +671,6 @@ enamex since the MUC-6 competition (<a class="reference external" href="https://
 <span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/local/lib/nltk_data&#39;</span>
-<span class="s2">    - &#39;&#39;</span>
 <span class="s2">**********************************************************************</span>
 </pre></div>
 </div>
