@@ -7,7 +7,16 @@ parts:
   # Unit 1
   - caption: Introduction to historical newspaper analysis and digitisation
     chapters: 
-    - file: unit1/1-intro
+    - file: unit1/1-general-overview
+      sections:
+      - file: unit1/1-1-1-historical-newspapers
+      - file: unit1/1-1-2-what-can-be-done
+      - file: unit1/1-1-3-what-is-newseye
+    - file: unit1/2-digitise-historical-newspapers
+      sections:
+      - file: unit1/1-2-1-from-paper-to-digital
+      - file: unit1/1-2-2-from-data-to-information
+      - file: unit1/1-2-3-accessing-information
   # Unit 2
   - caption: Information extraction and document understanding
     chapters: 

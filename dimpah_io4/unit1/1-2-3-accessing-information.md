@@ -1,0 +1,9 @@
+# 1.2.3. Accessing Information
+
+Automatic document indexing is a field of computer science and information science that uses computer methods to organize a collection of documents and subsequently facilitate the search for content within that collection. The multiplicity of document types (textual, audiovisual, Web) gives rise to very different approaches, particularly in terms of data representation. Nevertheless, they are based on a common set of theories, such as feature extraction, clustering, quantification, etc.
+
+Indexing is therefore based on various means and techniques and on numerous methodological and technical choices. Indexing is always intended to facilitate the search for information. In the case of a digital library of historical newspapers, since the uses are very different, this objective is difficult to achieve. A person looking to trace his ancestors in the historical newspapers will not do the same search as a researcher wishing to build a scientific corpus.
+
+Once again, the characteristics of the indexing and the functioning of the search engine are not known to the user. Depending on the way the documents have been indexed and the search strategy that a user sets up. It is common to find that certain documents are, in practice, excluded from the results even though they would have a rightful place in them. We are again faced with a black box.
+
+Fortunately, in platforms such as NewsEye, it is possible to make very precise and customizable searches that can guarantee a limitation of information search bias. In Unit 3 of this course we will focus on understanding how digitized historical texts are stored and classified and how the search engine finds and orders the results.
