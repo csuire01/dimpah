@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2. Searching with Solr &#8212; DiMPAH - Digital Historical Research on European Historical Newspapers with the NewsEye Platform</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -51,10 +51,13 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Result representations" href="3-2-3-result-representations.html" />
+    <link rel="next" title="3. Result representations" href="3-2-3-result-representations.html" />
     <link rel="prev" title="1. Introduction to Ranking Problem" href="3-2-1-ranking-problem.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -93,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction to historical newspaper analysis and digitisation
  </span>
@@ -105,7 +108,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Information extraction and document understanding
  </span>
@@ -137,7 +140,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Document retrieval and information seeking
  </span>
@@ -160,17 +163,17 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="3-1-1-definition-and-objectives.html">
-     Definition and objectives
+     1. Overview and definitions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="3-1-2-indexing-metadata.html">
-     Indexing Metadata
+     2. Indexing Metadata
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="3-1-3-indexing-indexing-text-content.html">
-     Indexing text content
+     3. Indexing textual content
     </a>
    </li>
   </ul>
@@ -197,7 +200,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="3-2-3-result-representations.html">
-     Result representations
+     3. Result representations
     </a>
    </li>
   </ul>
@@ -214,12 +217,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="3-3-1-demonstration-of-blackboxes.html">
-     Demonstration of blackboxes
+     1. Demonstration of blackboxes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="3-3-2-search-and-exploration.html">
-     Advanced Search and Exploration
+     2. Advanced Search and Exploration
     </a>
    </li>
    <li class="toctree-l2">
@@ -275,7 +278,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -326,7 +329,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -361,20 +364,59 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>2. Searching with Solr</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-technicalities-and-syntax">
+   a. Technicalities and Syntax
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#b-advanced-parameters">
+   b. Advanced parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-facetting">
+   c. Facetting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-other-useful-features">
+   d. Other useful features
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="searching-with-solr">
+  <div class="tex2jax_ignore mathjax_ignore section" id="searching-with-solr">
 <h1>2. Searching with Solr<a class="headerlink" href="#searching-with-solr" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="a-technicalities-and-syntax">
 <h2>a. Technicalities and Syntax<a class="headerlink" href="#a-technicalities-and-syntax" title="Permalink to this headline">¶</a></h2>
 <p><strong><u>Querying a Solr server</u></strong></p>
-<p>A Solr index is available at the following address <a class="reference external" href="http://solrserver">http://solrserver</a>. Querying a Solr server can be done in multiple ways but the simplest one is to use a HTTP GET request with query string. This is a lot of technical terms just to say that we will create a URL pointing towards the Solr server and add some parameters to it. Parameters can be added to any URL this way: <span class="xref myst">https://www.example.com/page?param1=val1&amp;param2=val2</span>.
+<p>A Solr index is available at the following address <a class="reference external" href="http://solrserver">http://access_dimaph_solrserver</a>. Querying a Solr server can be done in multiple ways but the simplest one is to use a HTTP GET request with query string. This is a lot of technical terms just to say that we will create a URL pointing towards the Solr server and add some parameters to it. Parameters can be added to any URL this way: <span class="xref myst">https://www.example.com/page?param1=val1&amp;param2=val2</span>.
 If one of the parameter should contain an array of values, you can just repeat the parameter for each value of the array: <span class="xref myst">https://www.example.com/page?param1=val1&amp;param1=val2</span>. Be careful that passing arrays as query parameters is not standardised, and other services may not work the same way (but Solr does !).
 Solr will then process the query and will return a list of resulting documents, along with other information.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We import all necessary components to make requests to Solr and display results.</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interact_manual</span>
@@ -388,7 +430,8 @@ Solr will then process the query and will return a list of resulting documents, 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RenderJSON</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function can display the results from a Solr request in the form of a tree</span>
+<span class="k">class</span> <span class="nc">RenderJSON</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_data</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">json_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
@@ -411,7 +454,9 @@ Solr will then process the query and will return a list of resulting documents, 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">query_solr</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">param_widgets</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function is called when you click on th &quot;send&quot; button in the form that will appear next.</span>
+<span class="c1"># It actually does the request to the Solr server</span>
+<span class="k">def</span> <span class="nf">query_solr</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">param_widgets</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">param_widgets</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_widgets</span><span class="p">[</span><span class="n">key</span><span class="p">],</span><span class="nb">list</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">param_widgets</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
@@ -425,6 +470,7 @@ Solr will then process the query and will return a list of resulting documents, 
     <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">connection</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span>
 
+<span class="c1"># This generates a form to easily inputs various search parameters to a Solr request</span>
 <span class="k">def</span> <span class="nf">generate_widgets</span><span class="p">(</span><span class="n">params_list</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">params_widgets</span>
     <span class="n">params_widgets</span> <span class="o">=</span> <span class="p">{}</span>
@@ -497,8 +543,10 @@ Solr will then process the query and will return a list of resulting documents, 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">global</span> <span class="n">params_widgets</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Executing this cell will display a form to query the Solr server.</span>
+<span class="k">global</span> <span class="n">params_widgets</span>
 <span class="k">global</span> <span class="n">url</span>
+<span class="c1"># TODO: Create an API and add credentials to the request </span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080/solr/newseye_collection/select?&#39;</span>
 <span class="n">solr_paramaters</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;q&quot;</span><span class="p">,</span><span class="s2">&quot;*:*&quot;</span><span class="p">)]</span>
 <span class="n">generate_widgets</span><span class="p">(</span><span class="n">solr_paramaters</span><span class="p">)</span>
@@ -507,40 +555,42 @@ Solr will then process the query and will return a list of resulting documents, 
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "55ec50d2699248f6a2db9288a44edb2c"}
+{"version_major": 2, "version_minor": 0, "model_id": "3adad41c260546d38e476e71ce936e4a"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9dc538d2ed5f402b968eb37c4d4554b0"}
+{"version_major": 2, "version_minor": 0, "model_id": "6e8d7a89bf6b4b81aeee1b3ad5f1f66d"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "85cc40db4cff4a9fb45fda1019fb4244"}
+{"version_major": 2, "version_minor": 0, "model_id": "c667c830571d43f986a3baea8159f19a"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a69c61718b144a1d9a9fc28cbd5b7f10"}
+{"version_major": 2, "version_minor": 0, "model_id": "f9f5f59c0db4470f9d0c07c1d0eb5c4a"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c05b2b9465a24e628ee8dda7442d9d80"}
+{"version_major": 2, "version_minor": 0, "model_id": "0fbe64508edd4bbaaa73d67e6b987cdf"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "27d843d66d5e46a0b9a8b8e3cc95376b"}
+{"version_major": 2, "version_minor": 0, "model_id": "e00a3b32bf0e441580e620633fa1d9a8"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0dbbb6f996d64424a58c63c69ed5b17e"}
+{"version_major": 2, "version_minor": 0, "model_id": "c0a843d1e765435c93e1dc9cef14606d"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4adf3471e77f4392ab2054d88f25a9d5"}
+{"version_major": 2, "version_minor": 0, "model_id": "a49c705467fc452aa77c625eae0013e2"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ecef030e83aa431db5840e484f27c448"}
+{"version_major": 2, "version_minor": 0, "model_id": "040afbb40ae04102af5ef76b18da9fd2"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9cb3b0f03dcf4796903831f4aae7f67a"}
+{"version_major": 2, "version_minor": 0, "model_id": "fbf31242e3a6471cabcee97d6710b928"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6e3cb86d0b204a06a78fcb4286640182"}
+{"version_major": 2, "version_minor": 0, "model_id": "55e2d548de2046ea9f567d32673a25e8"}
 </script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the results of the last request</span>
+<span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1890</span><span class="o">/</span><span class="mf">1137126567.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Display the results of the last request</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
 <span class="ne">NameError</span>: name &#39;response&#39; is not defined
 </pre></div>
@@ -636,54 +686,42 @@ More advance parameters can be used to further refine how the similarity is comp
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="3-2-1-ranking-problem.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">1. Introduction to Ranking Problem</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="3-2-1-ranking-problem.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">1. Introduction to Ranking Problem</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="3-2-3-result-representations.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3. Result representations</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="3-2-3-result-representations.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Result representations</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By DiMPAH IO4 Team<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By DiMPAH IO4 Team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
