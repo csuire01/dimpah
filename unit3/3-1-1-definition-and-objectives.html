@@ -37,17 +37,19 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -395,34 +397,12 @@
      1. What is the purpose of indexing data ?
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#common-use-cases">
-     2. Common use cases
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#technicalities">
-     3. Technicalities
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#b-tools-and-methodology">
    b. Tools and methodology
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-data-should-be-indexed">
-     1. What data should be indexed ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-can-it-be-done">
-     2. How can it be done ?
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -454,34 +434,12 @@
      1. What is the purpose of indexing data ?
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#common-use-cases">
-     2. Common use cases
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#technicalities">
-     3. Technicalities
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#b-tools-and-methodology">
    b. Tools and methodology
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-data-should-be-indexed">
-     1. What data should be indexed ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-can-it-be-done">
-     2. How can it be done ?
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -498,30 +456,20 @@
 <h2>a. Definition and objectives<a class="headerlink" href="#a-definition-and-objectives" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="what-is-the-purpose-of-indexing-data">
 <h3>1. What is the purpose of indexing data ?<a class="headerlink" href="#what-is-the-purpose-of-indexing-data" title="Permalink to this headline">¶</a></h3>
-<p>Indexes are used to quickly find items or ideas.</p>
-<p>Allow fast retrieval from a large collection</p>
-</div>
-<div class="section" id="common-use-cases">
-<h3>2. Common use cases<a class="headerlink" href="#common-use-cases" title="Permalink to this headline">¶</a></h3>
-<p>Overview of common use cases in DH (archives, web archives, open data, …) and CS/Development (search engines, monitoring, analytics, etc.)</p>
-</div>
-<div class="section" id="technicalities">
-<h3>3. Technicalities<a class="headerlink" href="#technicalities" title="Permalink to this headline">¶</a></h3>
-<p>Conceptually, indexing is a trade of disk space for search time.</p>
+<p>The number of documents available in a collection can make the process of retrieving information difficult. To access a particular document without the use of an index, there is no other choice than checking every document one by one. This is called a <em>sequential search</em>. As you can imagine, this is not a very efficient method: the more documents there are, the longer the search. To overcome this problem, is is possible to create indexes on various fields of a document. A field corresponds to part of a document (its title, its publication date, its text, <em>etc.</em>). Conceptually, an index associates the value of a field with the location of the document in the system. For example, in a library, it is much more efficient to consult the catalog to know where a particular book is located rather than scannning through all the books until the relevant one is found.</p>
+<p>Indexing data is a crucial part of archival work as it is the basis for the public use of historical sources.
+An example of the indexing process in the Universal Decimal Classification (UDC). Created at the end of the 19th century, it is a hierarchical system trying to classify information in 9 main classes representing human knowledge (Social sciences, mathematics, philosophy, <em>etc.</em>). These classes are divided into 10 subparts that can themselves be further divided. The UDC also integrates special characters allowing for more precise queries. For example, the query <strong>17:7</strong> concerns documents about Ethics (category 17) in relation to Arts (category 7).
+This system was used in the creation of the Mundaneum in Belgium, a building which objective was to collect and archive knowledge. It contains about 12 millions cards, classified according to the UDC. It is said to be the first search engine.</p>
+<p><img alt="Mundaneum" src="../_images/mundaneum.jpg" />
+CC-BY Mark Wathieu</p>
+<p>Using digital systems to archive documents brings a change of paradigm, both for archivists and end-users. The quantity of available information does not cease to grow. On the one hand it is extremely useful as it allows researchers to <em>easily</em> work on massive collections of documents. On the other hand it brings up new difficulties, challenges and pitfalls.</p>
 </div>
 </div>
 <div class="section" id="b-tools-and-methodology">
 <h2>b. Tools and methodology<a class="headerlink" href="#b-tools-and-methodology" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="what-data-should-be-indexed">
-<h3>1. What data should be indexed ?<a class="headerlink" href="#what-data-should-be-indexed" title="Permalink to this headline">¶</a></h3>
-<p>Basically you should index what you need, as indexes can quickly grow and demand a lot of resources.</p>
-<p>Depends on the collection, the users’ need and the available resources (some compromises need to be made)</p>
-<p>Example with the NewsEye project.</p>
-</div>
-<div class="section" id="how-can-it-be-done">
-<h3>2. How can it be done ?<a class="headerlink" href="#how-can-it-be-done" title="Permalink to this headline">¶</a></h3>
-<p>Various tools can be used but we will focus on Solr in this lesson. All the principles will still be valid in other contexts.</p>
-</div>
+<p>When indexing a large collection of documents, it is necessary to think about what should effectively be indexed. You have to remember that indexing is a trade-off between disk space/processing power VS speed of search. Thus, indexing too much data can eventually hurt the search capabilities of a system if it is not ready to handle many indexes.</p>
+<p>Another thing to think about is the end-users’ needs. It is important to evaluate these needs beforehand so as to not waste processing power on indexes that will never be used. Let’s take as an example the case of the NewsEye project. One of its use case is to be able to highlight individual words in newspapers pages. The pipeline used in this project generates for every page of newspaper a XML file containing information on the position of every word in the page. One would think it is a good idea to index individual words with their position as to ease their retrieval. However, because there are lots of pages and because each page can contain up to 10,000 words, the number of words indexed would easily reach hundreds of millions, even billions. This is not desirable as it would increase the size of an index dramatically, thus slowing the entire system. A solution for this problem is to not index individual words but rather parse the XML file and get the words and their positions when needed (after a particular user query).</p>
+<p>During this course, we will learn how to use Solr, a software to index and retrieve data. Based on Apache Lucene, this software can be used to ingest large quantity of data and make them available for search through an API. The principles we will study in this course will still apply to other indexing softwares.</p>
 </div>
 </div>
 

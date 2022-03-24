@@ -37,17 +37,19 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -604,27 +606,27 @@ Solr will then process the query and will return a list of resulting documents, 
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "141e04adddc14d1f943631271862572e"}
+{"version_major": 2, "version_minor": 0, "model_id": "f9010b400b4e4625aed592d5ff21ac0c"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0ef964cb8dac402b8100333212d3ef1e"}
+{"version_major": 2, "version_minor": 0, "model_id": "4a4e47f963d64cbf9d08c668aa7567eb"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1e72703b587a43d39a2a291f3dee3275"}
+{"version_major": 2, "version_minor": 0, "model_id": "fddb718b3a7c4e71b69c5f3d8f3dd1bf"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e2db8dab44764e3d8b29968fcfd79a9c"}
+{"version_major": 2, "version_minor": 0, "model_id": "25839df32a4e44caa6a5f0fea8c9b79f"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c8f0ed02409e4592b82eee64412f40bc"}
+{"version_major": 2, "version_minor": 0, "model_id": "a9a7227f3e624f48a1eeb69ba2a60611"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e1d93a2a9dca42e08879359274cc48b0"}
+{"version_major": 2, "version_minor": 0, "model_id": "87e00979c195436ba89e097e527bb6c7"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f56edce43e234fb1930fb48f33fa8020"}
+{"version_major": 2, "version_minor": 0, "model_id": "8176fcea7e364b0caf8218730500025f"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2516625021f44e2fb14f2e56fc22d252"}
+{"version_major": 2, "version_minor": 0, "model_id": "40069d54799f4ae389e54d5ec405fa95"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ec37d981847f4cf9b280b134d95ec31c"}
+{"version_major": 2, "version_minor": 0, "model_id": "01e5e1d785bd4fc38360301c8e6b410b"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6eeb2ece5275498c8de2de35c8575e21"}
+{"version_major": 2, "version_minor": 0, "model_id": "a85b462d390e4404a16e2436d1ab894a"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "de1b45be92d647289661eb3cbc3ec52b"}
+{"version_major": 2, "version_minor": 0, "model_id": "fd094035b6824d7ba81294784130daf1"}
 </script></div>
 </div>
 <div class="cell docutils container">
@@ -637,7 +639,7 @@ Solr will then process the query and will return a list of resulting documents, 
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Display the results of the last request</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">RenderJSON</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
